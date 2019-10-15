@@ -1,0 +1,7 @@
+<div mat-dialog-content>
+  <p>{{data.question}}</p>
+  <p [innerHTML]="data.answer"></p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data.answer" cdkFocusInitial>Close</button>
+</div>

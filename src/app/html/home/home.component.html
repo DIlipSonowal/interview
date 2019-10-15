@@ -1,0 +1,18 @@
+<div style="text-align:center">
+        <h1>
+            Welcome to {{ title }}!
+        </h1>
+        <span *ngFor="let qa of qandA">
+                <a [routerLink]="qa.link">
+                    <button style="margin:5px 5px 0 0"  mat-raised-button>{{qa.q}}</button>
+                </a>
+        </span>
+        <br/><br/>-------------------xxx--------------------<br/>
+        
+<pre style="text-align:left">
+ <b>Time Difference</b>
+ var d = new Date();
+ var d1 = new Date('1983-11-16');
+ document.getElementById("demo").innerHTML = (d.getTime()-d1.getTime())/(1000*3600*24*365);
+</pre>
+</div>

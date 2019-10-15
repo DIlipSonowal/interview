@@ -1,0 +1,12 @@
+<div style="text-align:center">
+        <h1>
+            Welcome to {{ title }}!
+        </h1>
+
+        <span *ngFor="let qa of qandA">
+            <a [routerLink]="qa.link">
+                <button style="margin:5px 5px 0 0"  mat-raised-button>{{qa.q}}</button>
+            </a>
+        </span>
+
+</div>

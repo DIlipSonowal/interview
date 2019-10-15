@@ -1,0 +1,23 @@
+<div style="margin:1%">
+    <a routerLink="/angular">
+        <mat-icon aria-hidden="false">keyboard_backspace</mat-icon>
+    </a>
+   <h3 class="text-center">Authgaurds?</h3>
+   If you are trying to block some routes from loading based on some permissions or blocking a route based if not authenticated/authorised then we can use angular router guards<br/>
+   <pre>
+Route Gaurd            Use
+------------------------------------
+canDeactivate    :  Gaurd navigation away from the current route
+canActivate      :  Gaurd Navigation to a Route
+canActivateChild :  Gaurd Navigation to a child route
+canLoad          :  Gaurd Navigation to a feature module loaded asynchronously
+Resolve          :  Perform route data reterival before route activation
+------------------------------------
+Steps to use Route Gaurd
+1. Build the route Gaurd
+2. Register the route gaurd with Dependency Injection(DI)
+3. Tie the gaurd to a route
+   </pre>
+   <br/>  
+ 
+</div>

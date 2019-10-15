@@ -1,0 +1,32 @@
+<div style="margin:1%">
+    <a routerLink="/html">
+        <mat-icon aria-hidden="false">keyboard_backspace</mat-icon>
+    </a>
+    <h3 class="text-center">SSE (Server-Sent-Event)</h3>
+    <p>Server-Sent Events allow a web page to get updates from a server.</p>
+
+    <p><b>Server-Sent Events - One Way Messaging</b></p>
+    <p>A server-sent event is when a web page automatically gets updates from a server.</p>
+
+    <p>This was also possible before, but the web page would have to ask if any updates were available. With server-sent events, the updates come automatically.</p>
+
+    <p>Examples: Facebook/Twitter updates, stock price updates, news feeds, sport results, etc.</p>
+
+    <p><b>Receive Server-Sent Event Notifications</b></p>
+    <p>The EventSource object is used to receive server-sent event notifications:</p>
+    <pre>
+var source = new EventSource("demo_sse.php");
+source.onmessage = function(event) {{'{'}}
+    document.getElementById("result").innerHTML += event.data + "< br >";
+{{'}'}};
+        </pre>
+<p><b>Check Server-Sent Events Support</b></p>
+<pre>
+if(typeof(EventSource) !== "undefined") {{'{'}}
+    // Yes! Server-sent events support!
+    // Some code.....
+{{'}'}} else {{'{'}}
+    // Sorry! No server-sent events support..
+{{'}'}}    
+</pre>            
+</div>

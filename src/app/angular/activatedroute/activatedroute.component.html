@@ -1,0 +1,52 @@
+<div style="margin:1%">
+        <a routerLink="/angular">
+            <mat-icon aria-hidden="false">keyboard_backspace</mat-icon>
+        </a>
+       <h3>What is ActivatedRoute?</h3>
+    
+       <div>An interface that Provides access to information about a route, parameters
+            associated with a component that is loaded in an outlet. 
+            Use to traverse the RouterState tree and extract information from nodes.</div>
+       
+       <pre>
+interface ActivatedRoute {{'{'}}
+    snapshot: ActivatedRouteSnapshot
+    url: Observable< UrlSegment[] >
+    params: Observable< Params >
+    queryParams: Observable< Params >
+    fragment: Observable< string >
+    data: Observable< Data >
+    outlet: string
+    component: Type< any > | string | null
+    routeConfig: Route | null
+    root: ActivatedRoute
+    parent: ActivatedRoute | null
+    firstChild: ActivatedRoute | null
+    children: ActivatedRoute[]
+    pathFromRoot: ActivatedRoute[]
+    paramMap: Observable< ParamMap >
+    queryParamMap: Observable< ParamMap >
+    toString():string
+{{'}'}}
+
+--------------
+
+import {{'{'}} ActivatedRoute {{'}'}} from '@angular/router';
+
+@Component({{'{'}}
+selector: 'app-routable',
+    templateUrl: './routable.component.html',
+    styleUrls: ['./routable.component.css']
+{{'}'}})
+export class Routable2Component  implements OnInit {{'{'}}
+    constructor(private activatedRoute: ActivatedRoute) {{'{}'}}
+
+    ngOnInit() {{'{'}}
+        this.activatedRoute.url
+        .subscribe(url => console.log('The URL changed to: ' + url));
+        
+        this.activatedRoute.paramMap.subscribe(id => {{'{'}} this.id=id {{'}'}} );
+    {{'}'}}
+{{'}'}}
+       </pre>      
+    </div>

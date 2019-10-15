@@ -1,0 +1,28 @@
+<div style="margin:1%">
+        <a routerLink="/angular">
+            <mat-icon aria-hidden="false">keyboard_backspace</mat-icon>
+        </a>
+       <h3 class="text-center">AOT (Ahead-of-Time)?</h3>
+       <p> Components and templates provided by the angular can not understood by the browser directly.
+           So angular application needs a compilation process before run in a browser.
+        </p>
+        <p>
+           Angular AOT (Ahead-of-Time) compiler converts Angular Html and typescript
+           into efficient javascript code during the build phase before the browser downloads and run the code.
+           Compailing application during the build phase provides a faster rendering in the browser.
+        </p>
+
+        <p>
+        1. Faster rendering With AOT, the browser downloads a pre-compiled version of the application. The browser loads executable code so it can render the application immediately, without waiting to compile the app first.
+        </p><p>
+        2. Fewer asynchronous requests: The compiler inlines external HTML templates and CSS style sheets within the application JavaScript, eliminating separate ajax requests for those source files.
+    </p><p>
+        3. Smaller Angular framework download size: There's no need to download the Angular compiler if the app is already compiled. The compiler is roughly half of Angular itself, so omitting it dramatically reduces the application payload.
+    </p><p>
+        4. Detect template errors earlier The AOT compiler detects and reports template binding errors during the build step before users can see them.
+    </p><p>
+        5. Better security AOT compiles HTML templates and components into JavaScript files long before they are served to the client. With no templates to read and no risky client-side HTML or JavaScript evaluation, there are fewer opportunities for injection attacks.
+        </p>
+       
+</div>
+    

@@ -1,0 +1,46 @@
+<div style="margin:1%">
+        <a routerLink="/html">
+            <mat-icon aria-hidden="false">keyboard_backspace</mat-icon>
+        </a>
+       <h3 class="text-center">Data Attributes (data-*)</h3>
+       <p>Any attribute on any element whose attribute name starts with data- is a data attribute. Say you have an article and you want to store some extra information that doesn’t have any visual representation. Just use data attributes for that:</p>
+<pre>
+< article
+        id="electric-cars"
+        data-columns="3"
+        data-index-number="12314"
+        data-parent="cars">
+      ...
+< /article >    
+</pre>    
+<b>JavaScript access : </b><br/>
+<p>
+        Reading the values of these attributes out in JavaScript is also very simple. You could use getAttribute() with their full HTML name to read them, but the standard defines a simpler way: a DOMStringMap you can read out via a dataset property.
+</p>
+<p>
+        To get a data attribute through the dataset object, get the property by the part of the attribute name after data- (note that dashes are converted to camelCase).
+</p>
+<pre>
+const article = document.querySelector('#electric-cars');
+ 
+article.dataset.columns // "3"
+article.dataset.indexNumber // "12314"
+article.dataset.parent // "cars"
+</pre>
+<b>CSS access</b>
+<p>Note that, as data attributes are plain HTML attributes, you can even access them from CSS. For example to show the parent data on the article you can use generated content in CSS with the attr() function:</p>
+<pre>
+article::before {{'{'}}
+    content: attr(data-parent); //cars
+{{'}'}}
+</pre>    
+<p>You can also use the attribute selectors in CSS to change styles according to the data:</p>
+<pre>
+article[data-columns='3'] {{'{'}}
+    width: 400px;
+{{'}'}}
+article[data-columns='4'] {{'{'}}
+    width: 600px;
+{{'}'}}
+</pre>
+</div>
