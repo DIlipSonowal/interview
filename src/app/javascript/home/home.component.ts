@@ -251,6 +251,178 @@ export class HomeComponent implements OnInit {
       </pre>
       `
     },
+
+    {
+      id:7,
+      q:'Map',
+      a:`<b>Map</b>
+<p>Map is a collection of keyed data items, just like an Object. But the main difference is that Map allows keys of any type.</p>   
+<p><b>Methods and properties are:</b></p>
+<ol>
+<li>new Map() - Creates the map.</li>
+<li>map.set(key, value) - Stores the value by key.</li>
+<li>map.get(key) - Returns the value by key. undefined if key doen not exists in the Map.</li>
+<li>map.has(key) - Returns true if key exists, flase otherwise.</li>
+<li>map.delete(key) - Removes the value by key.</li>
+<li>map.clear() - Removes everything from the map.</li>
+<li>map.size - Returns the current element size.</li>
+<li>map.keys() - Return an iterable for keys.</li>
+<li>map.values() - Returns an iterable for values.</li>
+<li>map.entries() - Returns an iterable for entries [key, value], its use by default in for..of</li>
+</ol>
+<pre>
+var map = new Map();
+map.set('1', 'string'); //a string key
+map.set(1, 'num1'); // a num key
+map.set(true, 'boolean'); // a boolean key
+
+console.log(map.get('1')); // string
+console.log(map.get(1)); // num1
+console.log(map.get(true)) // boolean
+</pre>
+
+<p>As we can see, unlike objects, keys are not converted to strings. Any type of key is possible.</p>
+<p>Map can also use objects as keys.</p>
+<pre>
+var obj = {name:'Dilip'};
+var map = new Map();
+map.set(obj, 123);
+console.log(map.get(obj)); //123
+</pre>
+<p><b>How Map compares keys</b></p>
+<p>To test keys for equivalence, Map uses the algorithm SameValueZero. It is roughly the same as strict equality ===, but the difference is that NaN is considered equal to NaN. So NaN can be used as the key as well.</p>
+<p>This algorithm can’t be changed or customized.</p>
+<p><b>Chaining</b></p>
+<p>Every map.set call returns the map itself, so we can "chain" the calls:</p>
+<pre>
+map.set('1', 'str1').set(1, 'num1').set(true, 'boolean');
+-------------------------
+let recipeMap = new Map([
+  ['cucumber', 500],
+  ['tomatoes', 350],
+  ['onion',    50]
+]);
+
+// iterate over keys (vegetables)
+for (let vegetable of recipeMap.keys()) {
+  alert(vegetable); // cucumber, tomatoes, onion
+}
+
+// iterate over values (amounts)
+for (let amount of recipeMap.values()) {
+  alert(amount); // 500, 350, 50
+}
+
+// iterate over [key, value] entries
+for (let entry of recipeMap) { // the same as of recipeMap.entries()
+  alert(entry[0], entry[1]); // cucumber,500 (and so on)
+}
+</pre>
+<p>The insertion order is used</p>
+<p>The iteration goes in the same order as the values were inserted. Map preserves this order, unlike a regular Object.</p>
+<p>Besides that, Map has a built-in forEach method, similar to Array:</p>
+<pre>
+recipeMap.forEach((value, key, map) =>{
+  console.log(key, value);
+});
+</pre>
+<p><b>Object.entries: Map from Object</b></p>
+<p>When a Map is created, we can pass an array (or another iterable) with key/value pairs for initialization, like this:</p>
+<pre>
+// array of [key, value] pairs
+let map = new Map([
+  ['1',  'str1'],
+  [1,    'num1'],
+  [true, 'bool1']
+]);
+
+alert( map.get('1') ); // str1
+</pre>
+<p>If we have a plain object, and we’d like to create a Map from it, then we can use built-in method Object.entries(obj) that returns an array of key/value pairs for an object exactly in that format.</p>
+<pre>
+let obj = {
+  name: "John",
+  age: 30
+};
+let map = new Map(Object.entries(obj));
+alert( map.get('name') ); // John
+</pre>
+<p>Here, Object.entries returns the array of key/value pairs: [ ["name","John"], ["age", 30] ]. That’s what Map needs.</p>
+<p><b>Object.fromEntries: Object from Map</b></p>
+<p>We’ve just seen how to create Map from a plain object with Object.entries(obj).</p>
+<p>There’s Object.fromEntries method that does the reverse: given an array of [key, value] pairs, it creates an object from them:</p>
+<pre>
+let prices = Object.fromEntries([
+  ['banana', 1],
+  ['orange', 2],
+  ['meat', 4]
+]);
+// now prices = { banana: 1, orange: 2, meat: 4 }
+alert(prices.orange); // 2
+</pre>
+<p>We can use Object.fromEntries to get an plain object from Map.</p>
+<p>
+E.g. we store the data in a Map, but we need to pass it to a 3rd-party code that expects a plain object.</p>
+<pre>
+let map = new Map();
+map.set('banana', 1);
+map.set('orange', 2);
+map.set('meat', 4);
+let obj = Object.fromEntries(map.entries()); // make a plain object (*)
+// done!
+// obj = { banana: 1, orange: 2, meat: 4 }
+alert(obj.orange); // 2
+</pre>
+<p>A call to map.entries() returns an array of key/value pairs, exactly in the right format for Object.fromEntries.
+<br/>
+We could also make line (*) shorter:</p>
+<b>let obj = Object.fromEntries(map); // omit .entries()</b>
+<p>That’s the same, because Object.fromEntries expects an iterable object as the argument. Not necessarily an array. And the standard iteration for map returns same key/value pairs as map.entries(). So we get a plain object with same key/values as the map.</p>
+`},
+{
+  id:8,
+  q:'Set',
+  a:`<p>A Set is a special type collection - "set of values" (without keys), where each value may occur only once.</p>
+  <p>Its main methods are:</p>
+  <ul>
+<li>new Set(iterable) - creates the set, and if an iterable object is provided (usually an array), copies values from it into the set.</li>
+<li>set.add(value) - adds a value, returns the set itself.</li>  
+<li>set.delete(value) - removes the value, returns true if value existed at the moment of the call, otherwise false.</li>
+<li>set.has(value) - returns true if the value exists in the set, otherwise false.</li>
+<li>set.clear() - removes everything from the set.</li>
+<li>set.size - is the elements count.</li>
+<li>set.keys() - returns an iterable object for values,</li>
+<li>set.values() - same as set.keys(), for compatibility with Map,</li>
+<li>set.entries() - returns an iterable object for entries [value, value], exists for compatibility with Map.</li>
+</ul>
+<p>The main feature is that repeated calls of set.add(value) with the same value don’t do anything. That’s the reason why each value appears in a Set only once.
+</p><p>
+For example, we have visitors coming, and we’d like to remember everyone. But repeated visits should not lead to duplicates. A visitor must be “counted” only once.
+</p><p>
+Set is just the right thing for that:</p>
+<pre>
+let set = new Set();
+
+let john = { name: "John" };
+let pete = { name: "Pete" };
+let mary = { name: "Mary" };
+
+// visits, some users come multiple times
+set.add(john);
+set.add(pete);
+set.add(mary);
+set.add(john);
+set.add(mary);
+
+// set keeps only unique values
+alert( set.size ); // 3
+
+for (let user of set) {
+  alert(user.name); // John (then Pete and Mary)
+}
+</pre>
+  `
+}
   ];
 
   ngOnInit() {
