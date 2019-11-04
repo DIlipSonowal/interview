@@ -421,6 +421,9 @@ for (let user of set) {
   alert(user.name); // John (then Pete and Mary)
 }
 </pre>
+<p>The alternative to Set could be an array of users, and the code to check for duplicates on every insertion using arr.find. But the performance would be much worse,
+ because this method walks through the whole array checking every element. Set is much better optimized internally for uniqueness checks.</p>
+ 
   `
 }
   ];
