@@ -5,11 +5,12 @@ import {HomeComponent} from './home.component';
 
 
 const routes: Routes = [
-    { path:'', component: HomeComponent,  children: [
-      { path:'hh', component: HeaderComponent},   
-    ]
+  { path:'', component: HomeComponent,  
+      children: [
+        { path:'', component: HeaderComponent},   
+      ]    
   },
-//    { path:'', redirectTo:'home/hh', pathMatch:'full'},
+//{ path:'', redirectTo:'home/hh', pathMatch:'full'},
 ];
 
 @NgModule({

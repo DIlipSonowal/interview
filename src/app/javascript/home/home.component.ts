@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   qandA: any = [
     {
       id:2,
+
       q: 'bind(), apply(), call()',
       a:`<b>bind()</b><br/>The <b>bind()</b> method creates a new function that, when called, has its this keyword set to the provided value.
       <pre>
