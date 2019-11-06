@@ -12,5 +12,22 @@ Git basic--
     <li>Git init : git init [repository name]<br/>This command is used to start a new repository.<br/>
         This initializes a git repository, and creates the initial .git directory in a new or already existing project:
     </li>
+    <li>
+            git clone: This command creates a Git repository copy from a remote source. The command will also add the original location as a remote location so you are able to fetch from it again and push to it if you have permissions:
+            <br/>git clone git@github.com:user/test.git
+    </li>
+    <li>
+            git add: This will add file changes that are in your working directory to your stage/index:<br/> git add [file name], OR git add * (for all)
+    </li>
+
+    <li>
+            git rm: This will remove files from your index and your working directory so they will not be tracked:<br>
+            git rm [file_name]
+    </li>
+    <li>
+            git commit: This Git command takes all of the changes written in the index, creates a new commit object pointing to it, and sets the branch to point to that new commit:<br/>
+            git commit -m 'committing added changes'<br/>
+            git commit -a -m 'committing all changes, equals to git add and git commit'
+    </li>
 </ul>
 </div>
