@@ -634,7 +634,7 @@ a:`The RouterOutlet is a directive from the router library that is used like a c
 &lt;!-- Routed components go here --&gt;</pre>`},
 
 
-{id:28, q:'RxJS', link:'whatisangular',
+{id:28, q:'RxJS', link:'rxjs',
 a:`RxJS is a library for composing asynchronous and callback-based code in a functional, reactive style using Observables. Many APIs such as HttpClient produce and consume RxJS Observables and also uses operators for processing observables. For example, you can import observables and operators for using HttpClient as below,
 <p>import { Observable, throwError } from 'rxjs';<br/>
 import { catchError, retry } from 'rxjs/operators';
@@ -864,6 +864,22 @@ Ng-content:
 
 &lt;div&gt;gjjgjgjgj&lt;/div&gt;
 })`},
+
+{
+  id:55,
+  link: 'rxjs',
+  q: 'RxJs',
+  a:`<p>Reactive programming is an asynchronous programming paradigm concerned with data streams and the propagation of change (Wikipedia). RxJS (Reactive Extensions for JavaScript) is a library for reactive programming using observables that makes it easier to compose asynchronous or callback-based code. See (RxJS Docs).</p>
+
+  <p>RxJS provides an implementation of the Observable type, which is needed until the type becomes part of the language and until browsers support it. The library also provides utility functions for creating and working with observables. These utility functions can be used for:</p>
+  <ul>
+  <li>Converting existing code for async operations into observables</li>
+  <li>Iterating through the values in a stream</li>
+  <li>Mapping values to different types</li>
+  <li>Filtering streams</li>
+  <li>Composing multiple streams</li>
+  </ul>`
+},
 
 {
   id: 48, link:'view',

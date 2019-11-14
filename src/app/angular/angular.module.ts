@@ -15,6 +15,8 @@ import { CompComponent } from './view/comp/comp.component';
 import { DirectiveDirective } from './directive.directive';
 import { ContentDirective } from './content.directive';
 import { ContentComponent } from './view/content/content.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
+import { ObservableComponent } from './observable/observable.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { ContentComponent } from './view/content/content.component';
      CompComponent,
      DirectiveDirective,
      ContentDirective,
-     ContentComponent
+     ContentComponent,
+     RxjsComponent,
+     ObservableComponent
   ],
   imports: [
     AngularRoutingModule,

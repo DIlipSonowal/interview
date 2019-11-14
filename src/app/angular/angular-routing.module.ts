@@ -9,6 +9,8 @@ import { AotComponent } from './aot/aot.component';
 import { AsyncpipeComponent } from './asyncpipe/asyncpipe.component';
 import { AuthgaurdsComponent } from './authgaurds/authgaurds.component';
 import { ViewComponent } from './view/view.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
+import { ObservableComponent } from './observable/observable.component';
 
 const routes: Routes = [
     { path:'', component: AngularComponent, 
@@ -20,7 +22,12 @@ const routes: Routes = [
             { path:'asyncpipe', component: AsyncpipeComponent },
             { path:'authgaurd', component: AuthgaurdsComponent },
             { path:'ngtemplate', component: NgtemplateComponent},   
-            { path:'view', component: ViewComponent}
+            { path:'view', component: ViewComponent},
+            { path:'rxjs', component: RxjsComponent,
+              children: [
+                  { path:'', component: ObservableComponent }
+              ]
+            }
         ]
     },
 //    { path:'', redirectTo:'home/hh', pathMatch:'full'},
