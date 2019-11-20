@@ -1,0 +1,33 @@
+<p><b>fromEvent</b></p>
+
+<p class="infoClass">Creates an Observable that emits events of a specific type coming from the given event target.</p>
+
+<p><b>
+        fromEvent&lt;T&gt;(target: FromEventTarget&lt;T&gt;, eventName: string, options?: EventListenerOptions | ((...args: any[]) => T), resultSelector?: ((...args: any[]) => T)): Observable&lt;T&gt;
+</b></p>           
+
+<p><b>Parameters</b></p> 
+<table border="1" cellspacing="0" cellpadding="3"><tr>
+<td>target	</td><td>The DOM EventTarget, Node.js EventEmitter, JQuery-like event target, NodeList or HTMLCollection to attach the event handler to.
+</td></tr>
+<tr>
+        <td>
+eventName	</td><td>
+The event name of interest, being emitted by the target.</td></tr>
+<tr>
+        <td>
+options	</td><td>
+Optional. Default is undefined.<br/>
+
+Options to pass through to addEventListener</td></tr>
+<tr>
+        <td>
+resultSelector	</td><td>
+Optional. Default is undefined.<br/>
+Type: ((...args: any[]) => T).
+</td></tr></table>
+
+<p>Returns : Observable&lt;T&gt;:</p>
+
+<p><b>Description</b></p>
+<p class="infoClass">Creates an Observable from DOM events, or Node.js EventEmitter events or others.</p>

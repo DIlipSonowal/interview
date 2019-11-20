@@ -1,0 +1,167 @@
+<p><b>What are operators?</b></p>
+<p>Operators are functions. There are two kinds of operators:</p>
+<p>Pipeable Operators are the kind that can be piped to Observables using the syntax observableInstance.pipe(operator()). These include, filter(...), and mergeMap(...). When called, they do not change the existing Observable instance. Instead, they return a new Observable, whose subscription logic is based on the first Observable.</p>
+<p class="infoClass">A Pipeable Operator is a function that takes an Observable as its input and returns another Observable. It is a pure operation: the previous Observable stays unmodified.</p>
+<p>A Pipeable Operator is essentially a pure function which takes one Observable as input and generates another Observable as output. Subscribing to the output Observable will also subscribe to the input Observable.</p>
+
+<p>Creation Operators are the other kind of operator, which can be called as standalone functions to create a new Observable. For example: of(1, 2, 3) creates an observable that will emit 1, 2, and 3, one right after another. Creation operators will be discussed in more detail in a later section.</p>
+<p>For example, the operator called map is analogous to the Array method of the same name. Just as [1, 2, 3].map(x => x * x) will yield [1, 4, 9], the Observable created like this:</p>
+<pre>
+import {{'{'}} of {{'}'}} from 'rxjs';
+import {{'{'}} map {{'}'}} from 'rxjs/operators';
+        
+map(x => x * x)(of(1, 2, 3)).subscribe((v) => console.log(`value: ${{'{'}}v{{'}'}}`));
+        
+// Logs:
+// value: 1 
+// value: 4
+// value: 9
+</pre>            
+<p>will emit 1, 4, 9. Another useful operator is first:</p>
+<pre>
+import {{'{'}} of {{'}'}} from 'rxjs';
+import {{'{'}} first {{'}'}} from 'rxjs/operators';
+        
+first()(of(1, 2, 3)).subscribe((v) => console.log(`value: ${{'{'}}v{{'}'}}`));
+        
+// Logs:
+// value: 1
+</pre>            
+<p>Note that map logically must be constructed on the fly, since it must be given the mapping function to. By contrast, first could be a constant, but is nonetheless constructed on the fly. As a general practice, all operators are constructed, whether they need arguments or not.</p>
+<p><b>Piping</b></p>
+<p>Pipeable operators are functions, so they could be used like ordinary functions: op()(obs) — but in practice, there tend to be many of them convolved together, and quickly become unreadable: op4()(op3()(op2()(op1()(obs)))). For that reason, Observables have a method called .pipe() that accomplishes the same thing while being much easier to read:</p>
+<pre>
+obs.pipe(
+    op1(),
+    op2(),
+    op3(),
+    op3(),
+)
+</pre>
+<p>As a stylistic matter, op()(obs) is never used, even if there is only one operator; obs.pipe(op()) is universally preferred.</p>
+<p><b>Creation Operators</b></p>
+<p>What are creation operators? Distinct from pipeable operators, creation operators are functions that can be used to create an Observable with some common predefined behavior or by joining other Observables.</p>
+<p> A typical example of a creation operator would be the interval function. It takes a number (not an Observable) as input argument, and produces an Observable as output:</p>
+<pre>
+import {{'{'}} interval {{'}'}} from 'rxjs';
+
+const observable = interval(1000 /* number of milliseconds */);
+</pre>    
+<p><b>Higher-order Observables</b></p>
+<p>Observables most commonly emit ordinary values like strings and numbers, but surprisingly often, it is necessary to handle Observables of Observables, so-called higher-order Observables. For example, imagine you had an Observable emitting strings that were the URLs of files you wanted to see. The code might look like this:</p>
+<pre>
+const fileObservable = urlObservable.pipe(
+    map(url => http.get(url)),
+);
+</pre>    
+<p>http.get() returns an Observable (of string or string arrays probably) for each individual URL. Now you have an Observables of Observables, a higher-order Observable.</p>
+<p>But how do you work with a higher-order Observable? Typically, by flattening: by (somehow) converting a higher-order Observable into an ordinary Observable. For example:</p>
+<pre>
+const fileObservable = urlObservable.pipe(
+    map(url => http.get(url)),
+    concatAll(),
+);
+</pre>    
+<p>The concatAll() operator subscribes to each "inner" Observable that comes out of the "outer" Observable, and copies all the emitted values until that Observable completes, and goes on to the next one. All of the values are in that way concatenated. Other useful flattening operators (called join operators) are</p>
+<p><b>mergeAll() —</b> subscribes to each inner Observable as it arrives, then emits each value as it arrives</p>
+<p><b>switchAll() —</b> subscribes to the first inner Observable when it arrives, and emits each value as it arrives, but when the next inner Observable arrives, unsubscribes to the previous one, and subscribes to the new one.</p>
+<p><b>exhaust() —</b> subscribes to the first inner Observable when it arrives, and emits each value as it arrives, discarding all newly arriving inner Observables until that first one completes, then waits for the next inner Observable.</p>
+<p>Just as many array library combine map() and flat() (or flatten()) into a single flatMap(), there are mapping equivalents of all the RxJS flattening operators concatMap(), mergeMap(), switchMap(), and exhaustMap().</p>
+<p><b>Marble diagrams</b></p>
+<p>To explain how operators work, textual descriptions are often not enough. Many operators are related to time, they may for instance delay, sample, throttle, or debounce value emissions in different ways. Diagrams are often a better tool for that. Marble Diagrams are visual representations of how operators work, and include the input Observable(s), the operator and its parameters, and the output Observable.</p>
+<p class="infoClass">In a marble diagram, time flows to the right, and the diagram describes how values ("marbles") are emitted on the Observable execution.</p>
+
+<p>Below you can see the anatomy of a marble diagram.</p><br/>
+<img src="./assets/marble-diagram-anatomy.svg" /><br/>
+<p>Throughout this documentation site, we extensively use marble diagrams to explain how operators work. They may be really useful in other contexts too, like on a whiteboard or even in our unit tests (as ASCII diagrams).</p>
+<p><b>Categories of operators</b></p>
+<p>There are operators for different purposes, and they may be categorized as: creation, transformation, filtering, joining, multicasting, error handling, utility, etc. In the following list you will find all the operators organized in categories.</p>
+<b>Creation Operators</b>
+<ul>
+<li>ajax</li>
+<li>bindCallback</li>
+<li>bindCallback</li>
+<li>bindNodeCallback</li>
+<li>defer</li>
+<li>empty</li>
+<li>from</li>
+<li>fromEvent</li>
+<li>fromEventPattern</li>
+<li>generate</li>
+<li>interval</li>
+<li>of</li>
+<li>range</li>
+<li>throwError</li>
+<li>timer</li>
+<li>iif</li>
+</ul>
+
+<p><b>ajax : </b></p>
+<p class="infoClass">There is an ajax operator on the Rx object.</p>
+<pre>const ajax: any;</pre>
+<p>It creates an observable for an Ajax request with either a request object with url, headers, etc or a string for a URL.</p>
+<p><b>Using ajax() to fetch the response object that is being returned from API.</b></p>
+<pre>
+        import {{'{'}} ajax {{'}'}} from 'rxjs/ajax';
+        import {{'{'}} map, catchError {{'}'}} from 'rxjs/operators';
+        import {{'{'}} of {{'}'}} from 'rxjs';
+        
+        const obs$ = ajax(`https://api.github.com/users?per_page=5`).pipe(
+          map(userResponse => console.log('users: ', userResponse)),
+          catchError(error => {{'{'}}
+            console.log('error: ', error);
+            return of(error);
+          {{'}'}})
+        );
+</pre>
+<p><b>Using ajax.getJSON() to fetch data from API.</b></p>
+<pre>
+        import {{'{'}} ajax {{'}'}} from 'rxjs/ajax';
+        import {{'{'}} map, catchError {{'}'}} from 'rxjs/operators';
+        import {{'{'}} of {{'}'}} from 'rxjs';
+        
+        const obs$ = ajax.getJSON(`https://api.github.com/users?per_page=5`).pipe(
+          map(userResponse => console.log('users: ', userResponse)),
+          catchError(error => {{'{'}}
+            console.log('error: ', error);
+            return of(error);
+          {{'}'}})
+        );
+</pre>    
+<p><b>Using ajax() with object as argument and method POST with a two seconds delay.</b></p>
+<pre>
+        import {{'{'}} ajax {{'}'}} from 'rxjs/ajax';
+        import {{'{'}} of {{'}'}} from 'rxjs';
+        
+        const users = ajax({{'{'}}
+          url: 'https://httpbin.org/delay/2',
+          method: 'POST',
+          headers: {{'{'}}
+            'Content-Type': 'application/json',
+            'rxjs-custom-header': 'Rxjs'
+          {{'}'}},
+          body: {{'{'}}
+            rxjs: 'Hello World!'
+          {{'}'}}
+        {{'}'}}).pipe(
+          map(response => console.log('response: ', response)),
+          catchError(error => {{'{'}}
+            console.log('error: ', error);
+            return of(error);
+          {{'}'}})
+        );
+    </pre>
+<p><b>Using ajax() to fetch. An error object that is being returned from the request.</b></p>
+<pre>
+        import {{'{'}} ajax {{'}'}} from 'rxjs/ajax';
+        import {{'{'}} map, catchError {{'}'}} from 'rxjs/operators';
+        import {{'{'}} of {{'}'}} from 'rxjs';
+        
+        const obs$ = ajax(`https://api.github.com/404`).pipe(
+          map(userResponse => console.log('users: ', userResponse)),
+          catchError(error => {{'{'}}
+            console.log('error: ', error);
+            return of(error);
+          {{'}'}})
+        );
+    </pre>

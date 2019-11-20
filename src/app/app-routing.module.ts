@@ -7,6 +7,7 @@ const routes: Routes = [
   { path:'', redirectTo:'home', pathMatch:'full'},
   { path:'home', loadChildren:() =>import('./home/home.module').then(m => m.HomeModule)},
   { path:'angular', loadChildren:() =>import('./angular/angular.module').then(m => m.AngularModule)},
+  { path:'angularMaterial', loadChildren:()=> import('./material/material.module').then(m => m.MaterialModule)},
   { path:'javascript', loadChildren: ()=> import('./javascript/javascript.module').then(m => m.JavascriptModule)},
   { path:'css', loadChildren: ()=> import('./css/css.module').then(m => m.CssModule)},
   { path:'react', loadChildren: ()=> import('./react/react.module').then(m => m.ReactModule)},

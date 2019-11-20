@@ -11,6 +11,11 @@ import { AuthgaurdsComponent } from './authgaurds/authgaurds.component';
 import { ViewComponent } from './view/view.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ObservableComponent } from './observable/observable.component';
+import { OperatorComponent } from './operator/operator.component';
+import { MapComponent } from './map/map.component';
+import { OfComponent } from './of/of.component';
+import { FromComponent } from './from/from.component';
+import { FromEventComponent } from './from-event/from-event.component';
 
 const routes: Routes = [
     { path:'', component: AngularComponent, 
@@ -25,7 +30,12 @@ const routes: Routes = [
             { path:'view', component: ViewComponent},
             { path:'rxjs', component: RxjsComponent,
               children: [
-                  { path:'', component: ObservableComponent }
+                  { path:'', component: ObservableComponent },
+                  { path:'operator', component: OperatorComponent },
+                  { path:'map', component: MapComponent },
+                  { path:'of', component: OfComponent },
+                  { path:'from', component:FromComponent },
+                  { path:'fromEvent', component:FromEventComponent },
               ]
             }
         ]

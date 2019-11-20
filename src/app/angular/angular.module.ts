@@ -17,6 +17,11 @@ import { ContentDirective } from './content.directive';
 import { ContentComponent } from './view/content/content.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ObservableComponent } from './observable/observable.component';
+import { OperatorComponent } from './operator/operator.component';
+import { MapComponent } from './map/map.component';
+import { OfComponent } from './of/of.component';
+import { FromComponent } from './from/from.component';
+import { FromEventComponent } from './from-event/from-event.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,12 @@ import { ObservableComponent } from './observable/observable.component';
      ContentDirective,
      ContentComponent,
      RxjsComponent,
-     ObservableComponent
+     ObservableComponent,
+     OperatorComponent,
+     MapComponent,
+     OfComponent,
+     FromComponent,
+     FromEventComponent
   ],
   imports: [
     AngularRoutingModule,

@@ -1,0 +1,60 @@
+<p><b>Of</b></p>
+<p class="infoClass">Converts the arguments to an observable sequence.</p>
+
+<pre>of&lt;T&gt;(...args: Array&lt;T | SchedulerLike&gt;): Observable&lt;T&gt;</pre>
+
+<p><b>Parameters</b></p>
+<p><b>args	: </b>&emsp; Type: Array.</p>
+<p><b>Returns</b></p>
+<p><b>Observable&lt;T&gt;:</b> An Observable that emits the arguments described above and then completes.</p>
+<p><b>Description</b></p>
+<p class="infoClass">
+        Each argument becomes a next notification.</p>
+
+        <p>
+                <img src="./assets/of.png" width="70%"/>
+              </p>        
+<p>Unlike from, it does not do any flattening and emits each argument in whole as a separate next notification.</p>
+<p>Emit the values 10, 20, 30</p>
+<pre>
+        import {{'{'}} of {{'}'}} from 'rxjs';
+
+        of(10, 20, 30)
+        .subscribe(
+          next => console.log('next:', next),
+          err => console.log('error:', err),
+          () => console.log('the end'),
+        );
+        // result:
+        // 'next: 10'
+        // 'next: 20'
+        // 'next: 30'
+</pre>    
+<p>Emit the array [1,2,3]</p>
+<pre>
+        import {{'{'}} of {{'}'}} from 'rxjs';
+        of([1,2,3])
+        .subscribe(
+          next => console.log('next:', next),
+          err => console.log('error:', err),
+          () => console.log('the end'),
+        );
+        // result:
+        // 'next: [1,2,3]'
+</pre>
+<p><b>Overloads</b></p>
+<pre>of(a: T, scheduler: SchedulerLike): Observable&lt;T&gt;</pre>
+<p><b>Parameters</b></p>
+ <pre>
+    a            Type: T.
+        
+    scheduler    Type: SchedulerLike.
+</pre>        
+<p><b>Returns</b></p>
+<pre>Observable&lt;T&gt;</pre>
+
+<pre>of(...args: T[ ]): Observable&lt;T&gt;</pre>
+<p><b>args Type: T[ ].</b></p>
+
+<p><b>Returns</b></p>
+<pre>Observable&lt;T&gt;</pre>
