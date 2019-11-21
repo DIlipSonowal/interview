@@ -61,3 +61,26 @@
 
 <p><b>Returns</b></p>
 <p>Observable&lt;number&gt;: An Observable that emits a 0 after the dueTime and ever increasing numbers after each period of time thereafter.</p>
+
+<p><b>Description</b></p>
+<p class="infoClass">Its like interval, but you can specify when should the emissions start.</p>
+<p>
+    <img src="./assets/timer.png" width="80%" alt="timer" />
+</p>
+
+<p><b>timer</b> returns an Observable that emits an infinite sequence of ascending integers, with a constant interval of time, period of your choosing between those emissions. The first emission happens after the specified dueTime. The initial delay may be a Date. By default, this operator uses the async SchedulerLike to provide a notion of time, but you may pass any SchedulerLike to it. If period is not specified, the output Observable emits only one value, 0. Otherwise, it emits an infinite sequence.</p>
+<p>Emits ascending numbers, one every second (1000ms), starting after 3 seconds</p>
+<pre>
+        import {{'{'}} timer {{'}'}} from 'rxjs';
+
+        const numbers = timer(3000, 1000);
+        numbers.subscribe(x => console.log(x));
+</pre>    
+
+<p>Emits one number after five seconds</p>
+<pre>
+        import {{'{'}} timer {{'}'}} from 'rxjs';
+
+        const numbers = timer(5000);
+        numbers.subscribe(x => console.log(x));
+</pre>    
