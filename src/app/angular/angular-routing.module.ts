@@ -20,6 +20,8 @@ import { ThrowErrorComponent } from './throw-error/throw-error.component';
 import { ConcatComponent } from './concat/concat.component';
 import { ConcatMapComponent } from './concat-map/concat-map.component';
 import { MergeMapComponent } from './merge-map/merge-map.component';
+import { IntervalComponent } from './interval/interval.component';
+
 
 const routes: Routes = [
     { path:'', component: AngularComponent, 
@@ -44,6 +46,8 @@ const routes: Routes = [
                   { path:'concat', component:ConcatComponent },
                   { path:'concatMap', component:ConcatMapComponent },
                   { path:'mergeMap', component:MergeMapComponent },
+                  { path:'interval', component:IntervalComponent },
+
               ]
             }
         ]

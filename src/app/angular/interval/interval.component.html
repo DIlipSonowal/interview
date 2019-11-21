@@ -1,0 +1,63 @@
+<p><b>interval</b> &emsp; <span class="function">function</span> &emsp; <span class="stable">stable</span></p>
+
+<p class="infoClass">Creates an Observable that emits sequential numbers every specified interval of time, on a specified SchedulerLike.</p>
+<P><b>interval(period: 0 = 0, scheduler: SchedulerLike = async): Observable&lt;number&gt;</b></P>
+
+<p><b>Description</b></p>
+<p class="infoClass">Emits incremental numbers periodically in time.</p>
+<p>
+    <img src="./assets/interval.png" width="80%" alt="Interval" />
+</p>    
+
+<p>
+        interval returns an Observable that emits an infinite sequence of ascending integers, with a constant interval of time of your choosing between those emissions. The first emission is not sent immediately, but only after the first period has passed. By default, this operator uses the async SchedulerLike to provide a notion of time, but you may pass any SchedulerLike to it.
+</p>
+
+<p>Emits ascending numbers, one every second (1000ms) up to the number 3</p>
+<pre>
+        import {{'{'}} interval {{'}'}} from 'rxjs';
+        import {{'{'}} take {{'}'}} from 'rxjs/operators';
+        
+        const numbers = interval(1000);
+        
+        const takeFourNumbers = numbers.pipe(take(4));
+        
+        takeFourNumbers.subscribe(x => console.log('Next: ', x));
+        
+        // Logs:
+        // Next: 0
+        // Next: 1
+        // Next: 2
+        // Next: 3
+</pre>    
+
+<p><b>timer</b> &emsp; <span class="function">function</span> &emsp; <span class="stable">stable</span></p>
+<p class="infoClass">Creates an Observable that starts emitting after an dueTime and emits ever increasing numbers after each period of time thereafter.</p>
+<p>timer(dueTime: number | Date = 0, periodOrScheduler?: number | SchedulerLike, scheduler?: SchedulerLike): Observabl&lt;number&gt;</p>
+
+<p><b>Parameters</b></p>
+<table border="1" cellspacing="0" cellpadding="3">
+    <tr>
+        <td>dueTime</td>	
+        <td>Optional. Default is 0.<br/>
+            The initial delay time specified as a Date object or as an integer denoting milliseconds to wait before emitting the first value of 0.
+        </td>
+    </tr> 
+    <tr>  
+        <td>periodOrScheduler</td>	
+        <td>Optional. Default is undefined.<br/>
+
+            The period of time between emissions of the subsequent numbers.
+        </td>
+    </tr>
+    <tr>  
+        <td>   scheduler	</td>
+        <td>Optional. Default is undefined.<br/>
+
+            The SchedulerLike to use for scheduling the emission of values, and providing a notion of "time".
+        </td>
+    </tr>
+</table>
+
+<p><b>Returns</b></p>
+<p>Observable&lt;number&gt;: An Observable that emits a 0 after the dueTime and ever increasing numbers after each period of time thereafter.</p>

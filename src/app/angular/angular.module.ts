@@ -26,6 +26,7 @@ import { ThrowErrorComponent } from './throw-error/throw-error.component';
 import { ConcatComponent } from './concat/concat.component';
 import { ConcatMapComponent } from './concat-map/concat-map.component';
 import { MergeMapComponent } from './merge-map/merge-map.component';
+import { IntervalComponent } from './interval/interval.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { MergeMapComponent } from './merge-map/merge-map.component';
      ThrowErrorComponent,
      ConcatComponent,
      ConcatMapComponent,
-     MergeMapComponent
+     MergeMapComponent,
+     IntervalComponent
   ],
   imports: [
     AngularRoutingModule,

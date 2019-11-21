@@ -1,1 +1,50 @@
 <p><b>mergeMap</b> &emsp; <span class="function">function</span> &emsp; <span class="stable">stable</span></p>
+<p class="infoClass">
+    Projects each source value to an Observable which is merged in the output Observable.
+</p>        
+<p><b>
+    mergeMap&lt;T, R, O extends ObservableInput&lt;any&gt;&gt;(project: (value: T, index: number) => O, resultSelector?: ((outerValue: T, innerValue: ObservedValueOf&lt;O&gt;, outerIndex: number, innerIndex: number) => R) | number, concurrent: number = Number.POSITIVE_INFINITY): OperatorFunction&lt;T, ObservedValueOf&lt;O&gt; | R&gt;
+</b></p>
+
+<p><b>Parameters</b></p>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="parm">
+        <td mat-cell *matCellDef="let p">{{p.parm}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="desc">
+        <td mat-cell *matCellDef="let d">&emsp;{{d.desc}}</td>
+    </ng-container>
+   
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<p><b>Returns</b></p>
+<p>OperatorFunction&lt;T, ObservedValueOf&lt;O&gt; | R&gt;: An Observable that emits the result of applying the projection function (and the optional deprecated resultSelector) to each item emitted by the source Observable and merging the results of the Observables obtained from this transformation.</p>
+
+<p><b>Description</b></p>
+<p class="infoClass">Maps each value to an Observable, then flattens all of these inner Observables using mergeAll.</p>
+<p>
+<img src="./assets/mergeMap.png" width="80%" alt="mergeMap"/>
+</p>    
+<p>Returns an Observable that emits items based on applying a function that you supply to each item emitted by the source Observable, where that function returns an Observable, and then merging those resulting Observables and emitting the results of this merger.</p>
+
+<p><b>Map and flatten each letter to an Observable ticking every 1 second</b></p>
+<pre>
+        import {{'{'}} of, interval {{'}'}} from 'rxjs';
+        import {{'{'}} mergeMap, map {{'}'}} from 'rxjs/operators';
+        
+        const letters = of('a', 'b', 'c');
+        const result = letters.pipe(
+          mergeMap(x => interval(1000).pipe(map(i => x+i))),
+        );
+        result.subscribe(x => console.log(x));
+        
+        // Results in the following:
+        // a0
+        // b0
+        // c0
+        // a1
+        // b1
+        // c1
+        // continues to list a,b,c with respective ascending integers</pre>    
