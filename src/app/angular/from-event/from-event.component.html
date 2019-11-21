@@ -31,3 +31,75 @@ Type: ((...args: any[]) => T).
 
 <p><b>Description</b></p>
 <p class="infoClass">Creates an Observable from DOM events, or Node.js EventEmitter events or others.</p>
+
+<p>
+<img src="./assets/fromEvent.png" width="80%" alt="fromEvent"/>
+</p>
+
+<p>fromEvent accepts as a first argument event target, which is an object with methods for registering event handler functions. As a second argument it takes string that indicates type of event we want to listen for. fromEvent supports selected types of event targets, which are described in detail below. If your event target does not match any of the ones listed, you should use fromEventPattern, which can be used on arbitrary APIs. When it comes to APIs supported by fromEvent, their methods for adding and removing event handler functions have different names, but they all accept a string describing event type and function itself, which will be called whenever said event happens.</p>
+
+<p>Every time resulting Observable is subscribed, event handler function will be registered to event target on given event type. When that event fires, value passed as a first argument to registered function will be emitted by output Observable. When Observable is unsubscribed, function will be unregistered from event target.</p>
+
+<p>Note that if event target calls registered function with more than one argument, second and following arguments will not appear in resulting stream. In order to get access to them, you can pass to fromEvent optional project function, which will be called with all arguments passed to event handler. Output Observable will then emit value returned by project function, instead of the usual value.</p>
+
+<p>Remember that event targets listed below are checked via duck typing. It means that no matter what kind of object you have and no matter what environment you work in, you can safely use fromEvent on that object if it exposes described methods (provided of course they behave as was described above). So for example if Node.js library exposes event target which has the same method names as DOM EventTarget, fromEvent is still a good choice.</p>
+
+<p>If the API you use is more callback then event handler oriented (subscribed callback function fires only once and thus there is no need to manually unregister it), you should use bindCallback or bindNodeCallback instead.</p>
+
+<p><b>fromEvent</b> supports following types of event targets:</p>
+
+<p><b>DOM EventTarget</b></p>
+
+<p>This is an object with addEventListener and removeEventListener methods.</p>
+
+<p>In the browser, addEventListener accepts - apart from event type string and event handler function arguments - optional third parameter, which is either an object or boolean, both used for additional configuration how and when passed function will be called. When fromEvent is used with event target of that type, you can provide this values as third parameter as well.</p>
+
+<p>Node.js EventEmitter</p>
+
+<p>An object with addListener and removeListener methods.</p>
+
+<p>JQuery-style event target</p>
+
+<p>An object with on and off methods</p>
+
+<p>DOM NodeList</p>
+
+<p>List of DOM Nodes, returned for example by document.querySelectorAll or Node.childNodes.</p>
+
+<p>Although this collection is not event target in itself, fromEvent will iterate over all Nodes it contains and install event handler function in every of them. When returned Observable is unsubscribed, function will be removed from all Nodes.</p>
+
+<p>DOM HtmlCollection</p>
+
+<p>Just as in case of NodeList it is a collection of DOM nodes. Here as well event handler function is installed and removed in each of elements.</p>
+
+<p>Emits clicks happening on the DOM document</p>
+
+<pre>
+        import {{'{'}} fromEvent {{'}'}} from 'rxjs';
+
+        const clicks = fromEvent(document, 'click');
+        clicks.subscribe(x => console.log(x));
+        
+        // Results in:
+        // MouseEvent object logged to console every time a click
+        // occurs on the document.
+</pre>
+
+<p>Use addEventListener with capture option</p>
+<pre>
+        import {{'{'}} fromEvent {{'}'}} from 'rxjs';
+
+        const clicksInDocument = fromEvent(document, 'click', true); // note optional configuration parameter
+                                                                     // which will be passed to addEventListener
+        const clicksInDiv = fromEvent(someDivInDocument, 'click');
+        
+        clicksInDocument.subscribe(() => console.log('document'));
+        clicksInDiv.subscribe(() => console.log('div'));
+        
+        // By default events bubble UP in DOM tree, so normally
+        // when we would click on div in document
+        // "div" would be logged first and then "document".
+        // Since we specified optional `capture` option, document
+        // will catch event when it goes DOWN DOM tree, so console
+        // will log "document" and then "div".
+</pre>

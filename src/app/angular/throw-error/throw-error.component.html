@@ -1,0 +1,61 @@
+<p><b>throwError</b> &emsp; <span class="function">function</span> &emsp; <span class="stable">stable</span></p>
+<p class="infoClass">Creates an Observable that emits no items to the Observer and immediately emits an error notification.</p>
+<p><b>throwError(error: any, scheduler?: SchedulerLike): Observable&lt;never&gt;</b></p>
+
+<p><b>Parameters</b></p>
+
+<table border="1" cellspacing="0" cellpadding="3"><tr><td>
+error	</td><td>
+The particular Error to pass to the error notification.</td></tr>
+<tr><td>
+scheduler	</td><td>
+Optional. Default is undefined.
+
+A SchedulerLike to use for scheduling the emission of the error notification.
+</td></tr>
+</table>
+
+<p><b>Returns</b></p>
+<p><b>Observable&lt;never&gt;:</b> An error Observable: emits only the error notification using the given error argument.</p>
+
+<p><b>Description</b></p>
+<p class="infoClass">Just emits 'error', and nothing else.</p><br/>
+<p>
+  <img src="./assets/throw.png" width="80%" alt="throwError"/>
+</p>
+
+<p>This static operator is useful for creating a simple Observable that only emits the error notification. It can be used for composing with other Observables, such as in a mergeMap.</p>
+<p><b>Emit the number 7, then emit an error</b></p>
+<pre>
+        import {{'{'}} throwError, concat, of {{'}'}} from 'rxjs';
+
+        const result = concat(of(7), throwError(new Error('oops!')));
+        result.subscribe(x => console.log(x), e => console.error(e));
+        
+        // Logs:
+        // 7
+        // Error: oops!
+</pre>    
+
+<p><b>Map and flatten numbers to the sequence 'a', 'b', 'c', but throw an error for 2</b></p>
+<pre>
+        import {{'{'}} throwError, interval, of {{'}'}} from 'rxjs';
+        import {{'{'}} mergeMap {{'}'}} from 'rxjs/operators';
+        
+        interval(1000).pipe(
+          mergeMap(x => x === 2
+            ? throwError('Twos are bad')
+            : of('a', 'b', 'c')
+          ),
+        ).subscribe(x => console.log(x), e => console.error(e));
+        
+        // Logs:
+        // a
+        // b
+        // c
+        // a
+        // b
+        // c
+        // Twos are bad
+
+</pre>    

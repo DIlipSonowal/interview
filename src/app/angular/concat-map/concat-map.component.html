@@ -1,0 +1,54 @@
+<p><b>concatMap</b> &emsp; <span class="function">function</span> &emsp; <span class="stable">stable</span></p>
+
+<p class="infoClass">
+        Projects each source value to an Observable which is merged in the output Observable, in a serialized fashion waiting for each one to complete before merging the next.
+</p>        
+<p><b>
+    concatMap&lt;T, R, O extends ObservableInput&lt;any&gt;&gt;(project: (value: T, index: number) => O, resultSelector?: (outerValue: T, innerValue: ObservedValueOf&lt;O&gt;, outerIndex: number, innerIndex: number) => R): OperatorFunction&lt;T, ObservedValueOf&lt;O&gt; | R&gt;
+</b></p>
+
+<p><b>Parameters</b></p>
+<table border="1" cellspacing="0" cellpadding="3"><tr>
+<td>project</td>	
+<td>A function that, when applied to an item emitted by the source Observable, returns an Observable.</td>
+</tr>
+<tr>
+<td>resultSelector</td>	
+<td>Optional. Default is undefined.
+
+Type: (outerValue: T, innerValue: ObservedValueOf, outerIndex: number, innerIndex: number) => R.
+</td>
+</tr>
+</table>
+
+<p><b>Returns</b></p>
+<p class="infoClass">OperatorFunction&lt;T, ObservedValueOf&lt;O&gt; | R&gt;: An Observable that emits the result of applying the projection function (and the optional deprecated resultSelector) to each item emitted by the source Observable and taking values from each projected inner Observable sequentially.</p>
+
+<p><b>Description</b></p>
+<p class="infoClass">Maps each value to an Observable, then flattens all of these inner Observables using concatAll.</p>
+<p>
+    <img src="./assets/concatAll.png" alt="concatAll" width="80%" />
+</p>
+
+<p>Returns an Observable that emits items based on applying a function that you supply to each item emitted by the source Observable, where that function returns an (so-called "inner") Observable. Each new inner Observable is concatenated with the previous inner Observable.</p>
+
+<p>Warning: if source values arrive endlessly and faster than their corresponding inner Observables can complete, it will result in memory issues as inner Observables amass in an unbounded buffer waiting for their turn to be subscribed to.</p>
+
+<p>Note: concatMap is equivalent to mergeMap with concurrency parameter set to 1.</p>
+
+<p>For each click event, tick every second from 0 to 3, with no concurrency</p>
+<pre>
+        import {{'{'}} fromEvent, interval {{'}'}} from 'rxjs';
+        import {{'{'}} concatMap, take {{'}'}} from 'rxjs/operators';
+        
+        const clicks = fromEvent(document, 'click');
+        const result = clicks.pipe(
+          concatMap(ev => interval(1000).pipe(take(4)))
+        );
+        result.subscribe(x => console.log(x));
+        
+        // Results in the following:
+        // (results are not concurrent)
+        // For every click on the "document" it will emit values 0 to 3 spaced
+        // on a 1000ms interval
+        // one click = 1000ms-> 0 -1000ms-> 1 -1000ms-> 2 -1000ms-> 3</pre>    

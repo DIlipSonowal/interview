@@ -16,6 +16,10 @@ import { MapComponent } from './map/map.component';
 import { OfComponent } from './of/of.component';
 import { FromComponent } from './from/from.component';
 import { FromEventComponent } from './from-event/from-event.component';
+import { ThrowErrorComponent } from './throw-error/throw-error.component';
+import { ConcatComponent } from './concat/concat.component';
+import { ConcatMapComponent } from './concat-map/concat-map.component';
+import { MergeMapComponent } from './merge-map/merge-map.component';
 
 const routes: Routes = [
     { path:'', component: AngularComponent, 
@@ -36,6 +40,10 @@ const routes: Routes = [
                   { path:'of', component: OfComponent },
                   { path:'from', component:FromComponent },
                   { path:'fromEvent', component:FromEventComponent },
+                  { path:'throwError', component:ThrowErrorComponent },
+                  { path:'concat', component:ConcatComponent },
+                  { path:'concatMap', component:ConcatMapComponent },
+                  { path:'mergeMap', component:MergeMapComponent },
               ]
             }
         ]

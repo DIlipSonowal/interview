@@ -22,6 +22,10 @@ import { MapComponent } from './map/map.component';
 import { OfComponent } from './of/of.component';
 import { FromComponent } from './from/from.component';
 import { FromEventComponent } from './from-event/from-event.component';
+import { ThrowErrorComponent } from './throw-error/throw-error.component';
+import { ConcatComponent } from './concat/concat.component';
+import { ConcatMapComponent } from './concat-map/concat-map.component';
+import { MergeMapComponent } from './merge-map/merge-map.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +48,11 @@ import { FromEventComponent } from './from-event/from-event.component';
      MapComponent,
      OfComponent,
      FromComponent,
-     FromEventComponent
+     FromEventComponent,
+     ThrowErrorComponent,
+     ConcatComponent,
+     ConcatMapComponent,
+     MergeMapComponent
   ],
   imports: [
     AngularRoutingModule,
