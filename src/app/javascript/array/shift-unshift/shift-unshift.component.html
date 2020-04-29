@@ -1,0 +1,74 @@
+<h1>Shift</h1>
+The shift() method removes the first element from an array and returns that removed element. This method changes the length of the array.
+
+<pre>
+const array1 = [1, 2, 3];
+const firstElement = array1.shift();
+console.log(array1);
+// expected output: Array [2, 3]
+console.log(firstElement);
+// expected output: 1
+</pre>
+
+<h3>Syntax</h3>
+<pre>arr.shift()</pre>
+The removed element from the array; undefined if the array is empty.
+
+<h4>Description</h4>
+The shift method removes the element at the zeroeth index and shifts the values at consecutive indexes down, then returns the removed value. If the length property is 0, undefined is returned.
+<br><br>
+shift is intentionally generic; this method can be called or applied to objects resembling arrays. Objects which do not contain a length property reflecting the last in a series of consecutive, zero-based numerical properties may not behave in any meaningful manner.
+<br><br>
+Array.prototype.pop() has similar behavior to shift, but applied to the last element in an array
+
+<h4>Using shift() method in while loop</h4>
+The shift() method is often used in condition inside while loop. In the following example every iteration will remove the next element from an array, until it is empty:
+<pre>
+    var names = ["Andrew", "Edward", "Paul", "Chris" ,"John"];
+
+    while( (i = names.shift()) !== undefined ) {{'{'}}
+        console.log(i);
+    {{'}'}}
+    // Andrew, Edward, Paul, Chris, John
+</pre>    
+
+**************************
+<h1>Unshift</h1>
+The unshift() method adds one or more elements to the beginning of an array and returns the new length of the array.
+<pre>
+    const array1 = [1, 2, 3];
+
+    console.log(array1.unshift(4, 5));
+    // expected output: 5
+    
+    console.log(array1);
+    // expected output: Array [4, 5, 1, 2, 3]
+</pre>    
+
+<h3>Syntax</h3>
+<pre>arr.unshift(element1[, ...[, elementN]])</pre>
+<h3>elementN</h3>
+    The elements to add to the front of the arr.
+<h3>Return value</h3>
+The new length property of the object upon which the method was called.
+
+<h3>Description</h3>
+<p>The unshift method inserts the given values to the beginning of an array-like object.</p>
+<p>unshift is intentionally generic. This method can be called or applied to objects resembling arrays. Objects which do not contain a length property—reflecting the last in a series of consecutive, zero-based numerical properties—may not behave in any meaningful manner.</p>
+<p>Please note that, if multiple elements are passed as parameters, they're inserted in chunk at the beginning of the object, in the exact same order they were passed as parameters. Hence, calling unshift with n arguments once, or calling it n times with 1 argument (with a loop, for example), don't yield the same results.</p>
+
+<pre>
+    let arr = [1, 2]
+
+    arr.unshift(0)               // result of the call is 3, which is the new array length
+    // arr is [0, 1, 2]
+    
+    arr.unshift(-2, -1)          // the new array length is 5
+    // arr is [-2, -1, 0, 1, 2]
+    
+    arr.unshift([-4, -3])        // the new array length is 6
+    // arr is [[-4, -3], -2, -1, 0, 1, 2]
+    
+    arr.unshift([-7, -6], [-5])  // the new array length is 8
+    // arr is [ [-7, -6], [-5], [-4, -3], -2, -1, 0, 1, 2 ]
+</pre>

@@ -1,0 +1,85 @@
+<div style="margin:1%">
+    <a routerLink="/angular">
+        <mat-icon aria-hidden="false">keyboard_backspace</mat-icon>
+    </a>
+   <h3 class="text-center">Life Cycle Hook</h3>
+   <table cellspacing="0" cellpadding="1" width="100%" style="border: 1px solid #6f6f6f;">
+       <tr style="background-color: #6f6f6f;color: #ffffff;">
+           <td style="padding: 3px 5px;vertical-align: top;">ngOnChanges()</td>
+           <td style="padding: 3px 5px;vertical-align: top;">
+            Respond when Angular (re)sets data-bound input properties. The method receives a SimpleChanges object of current and previous property values.
+            <br/>
+            Called before ngOnInit() and whenever one or more data-bound input properties change.
+            <br/>
+            Angular calls its ngOnChanges() method whenever it detects changes to input properties of the component (or directive)
+<pre style="color: #000000;">
+ngOnChanges(changes: SimpleChanges) {{'{'}}
+    for (let propName in changes) {{'{'}}
+      let chng = changes[propName];
+      let cur  = JSON.stringify(chng.currentValue);
+      let prev = JSON.stringify(chng.previousValue);
+      this.changeLog.push(`${{'{'}}propName{{'}'}}: currentValue = ${{'{'}}cur{{'}'}}, previousValue = ${{'{'}}prev{{'}'}}`);
+    {{'}'}}
+{{'}'}}
+</pre>
+The ngOnChanges() method takes an object that maps each changed property name to a SimpleChange object holding the current and previous property values. This hook iterates over the changed properties and logs them.
+           </td>
+       </tr>
+       <tr>
+            <td style="padding: 3px 5px;vertical-align: top;">ngOnInit()</td>
+            <td style="padding: 3px 5px;vertical-align: top;">
+                Initialize the directive/component after Angular first displays the data-bound properties and sets the directive/component's input properties.
+                <br/>
+                Called once, after the first ngOnChanges().
+            </td>
+        </tr>
+        <tr style="background-color: #6f6f6f;color: #ffffff;">
+            <td style="padding: 3px 5px;vertical-align: top;">ngDoCheck()</td>
+            <td style="padding: 3px 5px;vertical-align: top;">
+                Detect and act upon changes that Angular can't or won't detect on its own.
+                <br/>
+                Called during every change detection run, immediately after ngOnChanges() and ngOnInit().
+            </td>
+        </tr>
+        <tr>
+            <td style="padding: 3px 5px;vertical-align: top;">ngAfterContentInit()</td>
+            <td style="padding: 3px 5px;vertical-align: top;">
+                Respond after Angular projects external content into the component's view / the view that a directive is in.
+                <br/>
+                Called once after the first ngDoCheck().
+            </td>
+        </tr>
+        <tr style="background-color: #6f6f6f;color: #ffffff;">
+            <td style="padding: 3px 5px;vertical-align: top;">ngAfterContentChecked()</td>
+            <td style="padding: 3px 5px;vertical-align: top;">
+                Respond after Angular checks the content projected into the directive/component.
+                <br/>
+                Called after the ngAfterContentInit() and every subsequent ngDoCheck().
+            </td>
+        </tr>
+        <tr>
+            <td style="padding: 3px 5px;vertical-align: top;">ngAfterViewInit()</td>
+            <td style="padding: 3px 5px;vertical-align: top;">
+                Respond after Angular initializes the component's views and child views / the view that a directive is in.
+                <br/>
+                Called once after the first ngAfterContentChecked().
+            </td>
+        </tr>
+        <tr style="background-color: #6f6f6f;color: #ffffff;">
+            <td style="padding: 3px 5px;vertical-align: top;">ngAfterViewChecked()</td>
+            <td style="padding: 3px 5px;vertical-align: top;">
+                Respond after Angular checks the component's views and child views / the view that a directive is in.
+                <br/>
+                Called after the ngAfterViewInit() and every subsequent ngAfterContentChecked().
+            </td>
+        </tr>
+        <tr>
+            <td style="padding: 3px 5px;vertical-align: top;">ngOnDestroy()</td>
+            <td style="padding: 3px 5px;vertical-align: top;">
+                Cleanup just before Angular destroys the directive/component. Unsubscribe Observables and detach event handlers to avoid memory leaks.
+                <br/>
+                Called just before Angular destroys the directive/component.
+            </td>
+        </tr>
+   </table>
+</div>   

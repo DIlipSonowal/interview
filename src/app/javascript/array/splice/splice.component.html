@@ -1,0 +1,105 @@
+<h1>
+Splice    
+</h1>
+The splice() method changes the contents of an array by removing or replacing existing elements and/or adding new elements in place
+<pre>
+    const months = ['Jan', 'March', 'April', 'June'];
+    months.splice(1, 0, 'Feb');
+    // inserts at index 1
+    console.log(months);
+    // expected output: Array ["Jan", "Feb", "March", "April", "June"]
+    
+    months.splice(4, 1, 'May');
+    // replaces 1 element at index 4
+    console.log(months);
+    // expected output: Array ["Jan", "Feb", "March", "April", "May"]
+</pre>    
+<h3>Syntax</h3>
+<pre>
+let arrDeletedItems = array.splice(start[, deleteCount[, item1[, item2[, ...]]]])
+</pre>    
+<h3>Parameters</h3>
+<h4>start</h4>
+<ul style="list-style: none;">
+    <li style="padding-bottom:7px;">The index at which to start changing the array.</li>
+    <li style="padding-bottom:7px;">If greater than the length of the array, start will be set to the length of the array. In this case, no element will be deleted but the method will behave as an adding function, adding as many element as item[n*] provided.</li>
+    <li style="padding-bottom:7px;">If negative, it will begin that many elements from the end of the array. (In this case, the origin -1, meaning -n is the index of the nth last element, and is therefore equivalent to the index of array.length - n.)</li>
+    <li>If array.length + start is less than 0, it will begin from index 0.</li>
+</ul>
+
+<h3>deleteCount | (Optional)</h3>
+<ul style="list-style: none;">
+    <li style="padding-bottom:7px;">An integer indicating the number of elements in the array to remove from start.</li>
+    <li style="padding-bottom:7px;">If deleteCount is omitted, or if its value is equal to or larger than array.length - start (that is, if it is equal to or greater than the number of elements left in the array, starting at start), then all the elements from start to the end of the array will be deleted.</li>
+    <li style="padding-bottom:7px;">Note: In IE8, it won't delete all when deleteCount is omitted.</li>
+    <li>If deleteCount is 0 or negative, no elements are removed. In this case, you should specify at least one new element (see below).</li>
+</ul>        
+
+<h3>item1, item2, ... | (Optional)</h3>
+<ul style="list-style: none;">
+    <li style="padding-bottom:7px;">
+        The elements to add to the array, beginning from start. If you do not specify any elements, splice() will only remove elements from the array.
+    </li>
+</ul>  
+
+<h3>Return value</h3>
+
+<ul style="list-style: none;">
+    <li style="padding-bottom:7px;">An array containing the deleted elements.</li>
+    <li style="padding-bottom:7px;">If only one element is removed, an array of one element is returned.</li>
+    <li style="padding-bottom:7px;">If no elements are removed, an empty array is returned.</li>
+</ul>        
+
+<pre>
+**********Remove 0 (zero) elements before index 2, and insert "drum"********
+let myFish = ['angel', 'clown', 'mandarin', 'sturgeon']
+let removed = myFish.splice(2, 0, 'drum')    
+// myFish is ["angel", "clown", "drum", "mandarin", "sturgeon"] 
+// removed is [], no elements removed
+
+**********Remove 0 (zero) elements before index 2, and insert "drum" and "guitar"*****
+let myFish = ['angel', 'clown', 'mandarin', 'sturgeon']
+let removed = myFish.splice(2, 0, 'drum', 'guitar')
+// myFish is ["angel", "clown", "drum", "guitar", "mandarin", "sturgeon"] 
+// removed is [], no elements removed
+
+*********Remove 1 element at index 3************
+
+let myFish = ['angel', 'clown', 'drum', 'mandarin', 'sturgeon']
+let removed = myFish.splice(3, 1)
+
+// removed is ["mandarin"]
+// myFish is ["angel", "clown", "drum", "sturgeon"] 
+
+**********Remove 1 element at index 2, and insert "trumpet"**********
+
+let myFish = ['angel', 'clown', 'drum', 'sturgeon']
+let removed = myFish.splice(2, 1, 'trumpet')
+
+// myFish is ["angel", "clown", "trumpet", "sturgeon"]
+// removed is ["drum"]
+
+**********Remove 2 elements from index 0, and insert "parrot", "anemone" and "blue"******
+
+let myFish = ['angel', 'clown', 'trumpet', 'sturgeon']
+let removed = myFish.splice(0, 2, 'parrot', 'anemone', 'blue')
+
+// myFish is ["parrot", "anemone", "blue", "trumpet", "sturgeon"] 
+// removed is ["angel", "clown"]
+
+***********Remove 1 element from index -2*************
+
+let myFish = ['angel', 'clown', 'mandarin', 'sturgeon']
+let removed = myFish.splice(-2, 1)
+
+// myFish is ["angel", "clown", "sturgeon"] 
+// removed is ["mandarin"]
+
+***********Remove all elements after index 2 (incl.)**********
+
+let myFish = ['angel', 'clown', 'mandarin', 'sturgeon']
+let removed = myFish.splice(2)
+
+// myFish is ["angel", "clown"]
+// removed is ["mandarin", "sturgeon"]
+</pre>        

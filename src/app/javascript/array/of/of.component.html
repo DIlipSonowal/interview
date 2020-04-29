@@ -1,0 +1,49 @@
+<h2>Array.of()</h2>
+<p>The Array.of() method creates a new Array instance from a variable number of arguments, regardless of number or type of the arguments.</p>
+<p>The difference between Array.of() and the Array constructor is in the handling of integer arguments: Array.of(7) creates an array with a single element, 7, whereas Array(7) creates an empty array with a length property of 7 (Note: this implies an array of 7 empty slots, not slots with actual undefined values).</p>
+<pre>
+Array.of(7);       // [7] 
+Array.of(1, 2, 3); // [1, 2, 3]
+
+Array(7);          // array of 7 empty slots
+Array(1, 2, 3);    // [1, 2, 3]
+</pre>
+<h3>Syntax</h3>
+<pre>Array.of(element0[, element1[, ...[, elementN]]])</pre>
+
+<h3>elementN</h3>
+Elements used to create the array.<br/>
+**************************
+<h2>Array.reverse()</h2>
+<p>The reverse() method reverses an array in place. The first array element becomes the last, and the last array element becomes the first.</p>
+<pre>
+const array1 = ['one', 'two', 'three'];
+console.log('array1:', array1);
+// expected output: "array1:" Array ["one", "two", "three"]    
+const reversed = array1.reverse();
+console.log('reversed:', reversed);
+// expected output: "reversed:" Array ["three", "two", "one"]   
+// Careful: reverse is destructive -- it changes the original array.
+console.log('array1:', array1);
+// expected output: "array1:" Array ["three", "two", "one"]
+</pre>  
+<h3>Syntax</h3>
+<pre>a.reverse()</pre>
+<h3>Return value</h3>
+The reversed array.  
+
+<h3>Description</h3>
+<p>The reverse method transposes the elements of the calling array object in place, mutating the array, and returning a reference to the array.</p>
+<p>reverse is intentionally generic; this method can be called or applied to objects resembling arrays. Objects which do not contain a length property reflecting the last in a series of consecutive, zero-based numerical properties may not behave in any meaningful manner.</p>
+
+<h3>Reversing the elements in an array-like object</h3>
+<p>The following example creates an array-like object a, containing three elements and a length property, then reverses the array-like object. The call to reverse() returns a reference to the reversed array-like object a.</p>
+<pre>
+const a = {{'{'}}0: 1, 1: 2, 2: 3, length: 3{{'}'}}
+
+console.log(a); // {{'{'}}0: 1, 1: 2, 2: 3, length: 3{{'}'}}
+    
+Array.prototype.reverse.call(a); //same syntax for using apply()
+    
+console.log(a); // {{'{'}}0: 3, 1: 2, 2: 1, length: 3{{'}'}}
+</pre>

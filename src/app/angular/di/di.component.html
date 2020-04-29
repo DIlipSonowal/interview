@@ -1,0 +1,45 @@
+<div style="margin:1%">
+    <a routerLink="/angular">
+        <mat-icon aria-hidden="false">keyboard_backspace</mat-icon>
+    </a>
+   <h3 class="text-center">Dependency Injection (DI)</h3>
+   Dependency injection (DI), is an important application design pattern in which a class asks for dependencies from external sources rather than creating them itself. Angular comes with its own dependency injection framework for resolving dependencies( services or objects that a class needs to perform its function).So you can have your services depend on other services throughout your application.
+   <p>
+    The consumer of an injected service doesn't need to know how to create that service. It's the job of the DI framework to create and cache dependencies. The consumer just needs to let the DI framework know which dependencies it needs.
+   </p>
+   <p>
+    Sometimes a service depends on other services, which may depend on yet other services. The dependency injection framework resolves these nested dependencies in the correct order. At each step, the consumer of dependencies declares what it requires in its constructor, and lets the framework provide them.
+   </p>
+   <p>
+    The following example shows that AppComponent declares its dependence on LoggerService and UserContext.
+    </p>
+<pre>
+app.component.ts
+-------------------
+constructor(logger: LoggerService, public userContext: UserContextService) {{'{'}}
+    userContext.loadUser(this.userId);
+    logger.logInfo('AppComponent initialized');
+{{'}'}}
+</pre>  
+UserContext in turn depends on both LoggerService and UserService, another service that gathers information about a particular user.
+<pre>
+user-context-service.ts (Injection)
+-------------------------
+@Injectable({{'{'}}
+    providedIn: 'root'
+{{'}'}})
+export class UserContextService {{'{'}}
+    constructor(private userService: UserService, private loggerService: LoggerService) {{'{'}}
+    {{'}'}}
+{{'}'}}
+</pre>  
+<p>
+When Angular creates AppComponent, the DI framework creates an instance of LoggerService and starts to create UserContextService. UserContextService also needs LoggerService, which the framework already has, so the framework can provide the same instance. UserContextService also needs UserService, which the framework has yet to create. UserService has no further dependencies, so the framework can simply use new to instantiate the class and provide the instance to the UserContextService constructor.
+</p>
+<p>
+The parent AppComponent doesn't need to know about the dependencies of dependencies. Declare what's needed in the constructor (in this case LoggerService and UserContextService) and the framework resolves the nested dependencies.
+</p>
+<p>
+When all dependencies are in place, AppComponent displays the user information.
+</p>
+</div>

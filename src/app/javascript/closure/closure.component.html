@@ -1,0 +1,29 @@
+<div style="margin:1%">
+    <a routerLink="/javascript">
+        <mat-icon aria-hidden="false">keyboard_backspace</mat-icon>
+    </a>
+   <h3 class="text-center">Closure</h3>
+   A closure is the combination of a function and the lexical environment within which that function was declared.
+     <br/><pre>
+     function a(){{'{'}}
+      var v = 'Closure';
+      function b(){{'{'}}
+        alert(v);
+     {{'}'}}
+      return b;
+   {{'}'}}
+    
+    var myFunc = a();
+    myFunc();
+     </pre>
+     This environment consists of any local variables that were in-scope at the time the closure
+      was created. In this case, myFunc is a reference to the instance of the function 
+      b() created when a() is run. The instance of b() maintains a reference to its
+       lexical environment, within which the variable v exists.
+        For this reason, when myFunc is invoked, the variable v remains available 
+        for use and "Clouser" is passed to alert.<br/><br/>
+
+        var r = a => b => c => d => a+b+c+d;<br/>
+     
+        console.log(r(1)(2)(3)(4));
+</div>

@@ -1,0 +1,51 @@
+<h1>Array Reduce() method</h1>
+The reduce() method executes a reducer function (that you provide) on each element of the array, resulting in a single output value.
+<pre>
+    const array1 = [1, 2, 3, 4];
+    const reducer = (accumulator, currentValue) => accumulator + currentValue;
+    
+    // 1 + 2 + 3 + 4
+    console.log(array1.reduce(reducer));
+    // expected output: 10
+    
+    // 5 + 1 + 2 + 3 + 4
+    console.log(array1.reduce(reducer, 5));
+    // expected output: 15
+</pre>    
+The reducer function takes four arguments:
+<ol>
+<li>Accumulator (acc)</li>
+<li>Current Value (cur)</li>
+<li>Current Index (idx)</li>
+<li>Source Array (src)</li>
+</ol>
+<p>Your reducer function's returned value is assigned to the accumulator, whose value is remembered across each iteration throughout the array, and ultimately becomes the final, single resulting value.</p>
+<h3>Syntax</h3>
+<pre>
+    arr.reduce(callback( accumulator, currentValue[, index[, array]] )[, initialValue])
+</pre>
+<h4>callback</h4>
+A function to execute on each element in the array (except for the first, if no initialValue is supplied).
+<br/>
+It takes four arguments:   
+<ul>
+    <li>
+        <h4>accumulator</h4>
+        The accumulator accumulates callback's return values. It is the accumulated value previously returned in the last invocation of the callback—or initialValue, if it was supplied.
+    </li>
+    <li>
+        <h4>currentValue</h4>
+        The current element being processed in the array.
+    </li>
+    <li>
+        <h3>index | (Optional)</h3>
+        The index of the current element being processed in the array. Starts from index 0 if an initialValue is provided. Otherwise, it starts from index 1.
+    </li>
+    <li>
+        <h3>array | (Optional)</h3>
+        The array reduce() was called upon.
+    </li>
+</ul> 
+
+<h4>initialValue | (Optional)</h4>
+A value to use as the first argument to the first call of the callback. If no initialValue is supplied, the first element in the array will be used as the initial accumulator value and skipped as currentValue. Calling reduce() on an empty array without an initialValue will throw a TypeError.

@@ -1,0 +1,22 @@
+<div style="margin:1%">
+    <a routerLink="/angular">
+        <mat-icon aria-hidden="false">keyboard_backspace</mat-icon>
+    </a>
+   <h3 class="text-center"> View Encaptulation</h3>
+   Defines template and style encapsulation options available for Component's Component.<br/>
+<pre>
+enum ViewEncapsulation {{'{'}}
+    Emulated: 0
+    <s>Native: 1</s>
+    None: 2
+    ShadowDom: 3
+{{'}'}}
+</pre>   
+
+<ul>
+    <li>ViewEncapsulation.Native: Deprecated. Use ViewEncapsulation.ShadowDom instead.</li>
+    <li>ViewEncapsulation.Emulated: Use shimmed CSS that emulates the native behavior.</li>
+    <li>ViewEncapsulation.None: Use global CSS without any encapsulation.</li>
+    <li>ViewEncapsulation.ShadowDom: Use Shadow DOM v1 to encapsulate styles.</li>
+</ul>
+</div>

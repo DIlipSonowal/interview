@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   qandA: any = [
     {
       id:2,
-
+      link:'abc',
       q: 'bind(), apply(), call()',
       a:`<b>bind()</b><br/>The <b>bind()</b> method creates a new function that, when called, has its this keyword set to the provided value.
       <pre>
@@ -88,7 +88,7 @@ export class HomeComponent implements OnInit {
       Difference between call, apply and bind is bind return a function with bounded object, call and apply execute with object as parameter,
       `
     },
-    {id: 0, q:'Closure',
+    {id: 0, q:'Closure',link:'clouser',
      a:`A closure is the combination of a function and the lexical environment within which that function was declared.
      <br/><pre>
      function a() {
@@ -117,6 +117,7 @@ export class HomeComponent implements OnInit {
      {
         id:3,
         q: 'Event Bubbling',
+        link:'event-bubbling',
         a:`Event Bubbling is the event starts from the deepest element or target element to its parents, then all its ancestors which are on the way to bottom to top. At present, all the modern browsers have event bubbling as the default way of event flow.
         <pre>
     &lt;div id="parent"&gt;
@@ -135,12 +136,11 @@ export class HomeComponent implements OnInit {
         console.log("Child clicked");
       });
   &lt;/script&gt;</pre>`
-     },
-
-   
+     },  
     {
       id:5,
       q:'Hoisted',
+      link:'hoisted',
       a:`<p>Variable and function declarations are physically moved to the top of your code, 
       but this is not in fact what happens. Instead, the variable and function declarations 
       are put into memory during the compile phase, but stay exactly where you typed them in 
@@ -195,17 +195,16 @@ export class HomeComponent implements OnInit {
       <b>Only declarations are hoisted</b><br/>
       `
     },
-
     {
       id:1, 
       q:'Lexical Scope',
+      link: 'lexical-scope',
       a:`Veriable defined outside of a scope (upper scope) will be automatically available inside of the scope`
     },
-
-
     {
       id:6,
       q:'Prototypes',
+      link:'prototype',
       a:`All JavaScript objects inherit properties and methods from a prototype.<br/>
       We can not add a new property to an existing object constructor:<br/>
       <p>Person.nationality = "English";</p>
@@ -252,10 +251,10 @@ export class HomeComponent implements OnInit {
       </pre>
       `
     },
-
     {
       id:7,
       q:'Map',
+      link:'map',
       a:`<b>Map</b>
 <p>Map is a collection of keyed data items, just like an Object. But the main difference is that Map allows keys of any type.</p>   
 <p><b>Methods and properties are:</b></p>
@@ -383,6 +382,7 @@ We could also make line (*) shorter:</p>
 {
   id:8,
   q:'Set',
+  link:'set',
   a:`<p>A Set is a special type collection - "set of values" (without keys), where each value may occur only once.</p>
   <p>Its main methods are:</p>
   <ul>
@@ -426,6 +426,12 @@ for (let user of set) {
  because this method walks through the whole array checking every element. Set is much better optimized internally for uniqueness checks.</p>
  
   `
+},
+{
+  id:9,
+  q:'Array',
+  link:'array',
+  a:`-------------`
 }
   ];
 

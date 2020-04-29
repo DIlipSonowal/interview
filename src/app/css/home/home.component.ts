@@ -398,7 +398,18 @@ div ~ p {
         < div>4< /div >
     < /div >    
     </pre>
-      `
+    The <b>flex-basis</b> property specifies the initial length of a flex item.<br>
+    Set the initial length of the third flex item to 200 pixels:<br/>
+    It works with align-items:stretch
+    <pre>
+    < div class="flex-container">
+        < div>1< /div>
+        < div>2< /div>
+        < div style="flex-basis: 200px">3< /div>
+        < div>4< /div>
+    < /div >    
+    </pre>
+    `
     },
 
     {
