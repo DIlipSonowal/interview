@@ -21,7 +21,7 @@ import { ConcatComponent } from './concat/concat.component';
 import { ConcatMapComponent } from './concat-map/concat-map.component';
 import { MergeMapComponent } from './merge-map/merge-map.component';
 import { IntervalComponent } from './interval/interval.component';
-
+import { SubbhvrsbjComponent } from './rxjs/subbhvrsbj/subbhvrsbj.component';
 
 const routes: Routes = [
     { path:'', component: AngularComponent, 
@@ -47,7 +47,7 @@ const routes: Routes = [
                   { path:'concatMap', component:ConcatMapComponent },
                   { path:'mergeMap', component:MergeMapComponent },
                   { path:'interval', component:IntervalComponent },
-
+                  { path:'subjectbehavior', component:SubbhvrsbjComponent}
               ]
             }
         ]

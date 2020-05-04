@@ -1,0 +1,64 @@
+<h1>Subject</h1>
+A Subject is a special type of Observable that allows values to be multicasted to many Observers. Subjects are like EventEmitters.
+<pre>
+import {{'{'}}Subject{{'}'}} from 'rxjs';
+const sub = new Subject();
+sub.next('your data');
+sub.subscribe( val =>{{'{'}}
+    console.log('val', val);
+{{'}'}});
+</pre>
+<h1>BehaviorSubject</h1>
+Requires an initial value and emits the current value to new subscribers<br/>
+
+<pre>
+    import {{'{'}}BehaviorSubject{{'}'}} from 'rxjs';   
+    const sub = new BehaviorSubject(123);
+    sub.subscribe( val =>{{'{'}}
+        console.log('val', val);
+    {{'}'}});
+</pre>
+<h1>ReplaySubject</h1>
+
+A variant of Subject that "replays" or emits old values to new subscribers. It buffers a set number of values and will emit those values immediately to any new subscribers in addition to emitting new values to existing subscribers.
+<h3>Constructor</h3>
+constructor(bufferSize: number = Number.POSITIVE_INFINITY, windowTime: number = Number.POSITIVE_INFINITY, scheduler?: SchedulerLike)<br/>
+<table>
+    <tbody>  
+      <tr>
+        <td>bufferSize</td>       
+        <td>
+            <p>Optional. Default is <code>Number.POSITIVE_INFINITY</code>.</p>
+          <p>Type: <code>number</code>.</p>         
+        </td>
+      </tr>
+      <tr>
+        <td>windowTime</td>       
+        <td>
+                <p>Optional. Default is <code>Number.POSITIVE_INFINITY</code>.</p>
+          <p>Type: <code>number</code>.</p>         
+        </td>
+      </tr>
+      <tr>
+        <td>scheduler</td>
+        
+        <td>
+                <p>Optional. Default is <code>undefined</code>.</p>
+          <p>Type: <code>SchedulerLike</code>.</p>
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<pre>
+    import {{'{'}}ReplaySubject{{'}'}} from 'rxjs';   
+    const sub = new ReplaySubject(2);
+    sub.next('your data1');
+    sub.next('your data2');
+    sub.next('your data3');
+    sub.subscribe( val =>{{'{'}}
+        console.log('val', val);
+    {{'}'}});
+
+    //output your data2, your data3
+</pre>

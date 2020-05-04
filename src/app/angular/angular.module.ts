@@ -27,6 +27,7 @@ import { ConcatComponent } from './concat/concat.component';
 import { ConcatMapComponent } from './concat-map/concat-map.component';
 import { MergeMapComponent } from './merge-map/merge-map.component';
 import { IntervalComponent } from './interval/interval.component';
+import { SubbhvrsbjComponent } from './rxjs/subbhvrsbj/subbhvrsbj.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { IntervalComponent } from './interval/interval.component';
      ConcatComponent,
      ConcatMapComponent,
      MergeMapComponent,
-     IntervalComponent
+     IntervalComponent,
+     SubbhvrsbjComponent
   ],
   imports: [
     AngularRoutingModule,
