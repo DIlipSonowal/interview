@@ -1,5 +1,5 @@
 <div mat-dialog-content>
-  <p>{{data.question}}</p>
+  <p [innerHTML]="data.question"></p>
   <p [innerHTML]="data.answer"></p>
 </div>
 <div mat-dialog-actions>

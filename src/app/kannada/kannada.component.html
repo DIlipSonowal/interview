@@ -1,0 +1,6 @@
+<div style="margin:2%">
+    <h1>
+       -- Learn Kannada --
+    </h1>    
+    <button style="margin:5px 5px 0 0" *ngFor="let qa of qandA" mat-raised-button (click)="openDialog(qa.id)" [innerHTML]="qa.q"></button>
+</div> 

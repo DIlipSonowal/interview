@@ -1,0 +1,39 @@
+<div style="margin: 2%;">
+ <a routerLink="/javascript">&lArr;</a>
+ <h2>Immediately Invoked Function Expression - IIFE</h2>
+ <p>As you know that a function in JavaScript creates the local scope. So, you can define variables and function inside a function which cannot be access outside of that function. However, sometime you accidently pollute the global variables or functions by unknowingly giving same name to variables & functions as global variable & function names. For example, there are multiple .js files in your application written by multiple developers over a period of time. Single JavaScript file includes many functions and so these multiple .js files will result in large number of functions. There is a good chance of having same name of function exists in different .js files written by multiple developer and if these files included in a single web page then it will pollute the global scope by having two or more function or variables with the same name. Consider following example of two different JavaScript file included in single page.</p>
+ <p>The functions and variables declare inside IIFE will not pollute global scope even they have same name as global variables & functions. So let's see what is an IIFE is.</p>
+
+ <h3>What is an IIFE?</h3>
+ <p>As name suggest, IIFE is a function expression that automatically invokes after completion of the definition. The parenthesis () plays important role in IIFE pattern. In JavaScript, parenthesis cannot contain statements; it can only contain an expression.</p>
+ <h3>Example: IIFE</h3>
+ <pre>
+(function () {{'{'}}
+    //write your js code here
+{{'}'}})();
+</pre>    
+You can write all the functions and variables inside IIFE without worrying about polluting the global scope or conflict with other's JavaScript code which have functions or variables with same name.
+<br/>
+you can pass arguments in IIFE as shown below.
+<br/>
+<pre>
+var userName = "Bill";
+
+(function (name) {{'{'}}
+
+    function display(name)
+    {{'{'}}
+        alert("MyScript2.js: " + name);
+    {{'}'}}
+
+    display(name);
+})(userName);    
+</pre>
+<h3>Advantages of IIFE:</h3>
+<ol>
+    <li>Do not create unnecessary global variables and functions</li>
+    <li>Functions and variables defined in IIFE do not conflict with other functions & variables even if they have same name.</li>
+    <li>Organize JavaScript code.</li>
+    <li>Make JavaScript code maintainable.</li>
+</ol>
+</div>

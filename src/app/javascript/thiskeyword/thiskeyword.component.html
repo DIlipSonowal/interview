@@ -1,0 +1,183 @@
+<div style="margin:2%">
+<a routerLink="/javascript">&lArr;</a>
+<h2>this keyword</h2>
+this points to a particular object. Now, which is that object is depends on how a function which includes 'this' keyword is being called.
+<br/>
+Look at the following example and guess what the result would be?
+<pre>
+    var myVar = 100;
+
+    function WhoIsThis() {{'{'}}
+        var myVar = 200;
+    
+        alert(myVar); // 200
+        alert(this.myVar); // 100
+    {{'}'}}
+    
+    WhoIsThis(); // inferred as window.WhoIsThis()
+    
+    var obj = new WhoIsThis();
+    alert(obj.myVar); 
+</pre>
+The following four rules applies to this in order to know which object is referred by this keyword.
+<ol>
+<li>Global Scope</li>
+<li>Object's Method</li>
+<li>call() or apply() method</li>
+<li>bind() method</li>
+</ol>
+<h3>Global Scope</h3>
+If a function which includes 'this' keyword, is called from the global scope then this will point to the window object.
+<br/>
+<b>In the strict mode, value of 'this' will be undefined in the global scope.</b>
+'this' points to global window object even if it is used in an inner function. Consider the following example.
+<pre>
+    var myVar = 100;
+
+    function SomeFunction() {{'{'}}
+    
+        function WhoIsThis() {{'{'}}
+            var myVar = 200;
+    
+            alert("myVar = " + myVar); // 200
+            alert("this.myVar = " + this.myVar); // 100
+        {{'}'}}
+    
+        WhoIsThis(); 
+    {{'}'}}
+    
+    SomeFunction();
+</pre>    
+<h3>this Inside Object's Method</h3>
+you can create an object of a function using new keyword. So, when you create an object of a function using new keyword then this will point to that particular object. Consider the following example.
+
+<pre>
+    var myVar = 100;
+
+    function WhoIsThis() {{'{'}}
+        this.myVar = 200;
+    {{'}'}}
+    var obj1 = new WhoIsThis();
+    
+    var obj2 = new WhoIsThis();
+    obj2.myVar = 300;
+    
+    alert(obj1.myVar); // 200 
+    alert(obj2.myVar); // 300
+</pre>    
+In the above example, this points to obj1 for obj1 instance and points to obj2 for obj2 instance. In JavaScript, properties can be attached to an object dynamically using dot notation. Thus, myVar will be a property of both the instances and each will have a separate copy of myVar.
+<br/>
+Now look at the following example.
+
+<pre>
+    var myVar = 100;
+
+    function WhoIsThis() {{'{'}}
+        this.myVar = 200;
+        
+        this.display = function(){{'{'}}
+            var myVar = 300;
+            
+            alert("myVar = " + myVar); // 300
+            alert("this.myVar = " + this.myVar);  // 200
+        {{'}'}};
+    {{'}'}}
+    var obj = new WhoIsThis();
+    
+    obj.display();
+</pre>    
+In the above example, obj will have two properties myVar and display, where display is a function expression. So, this inside display() method points to obj when calling obj.display().
+<br/>
+this behaves the same way when object created using object literal, as shown below.
+
+<pre>
+    var myVar = 100;
+
+    var obj = {{'{'}} 
+        myVar : 300, 
+        whoIsThis: function(){{'{'}}
+            var myVar = 200;   
+            alert(myVar); // 200
+            alert(this.myVar); // 300
+        {{'}'}}
+{{'}'}};
+obj.whoIsThis(); 
+</pre>    
+<h3>call() and apply()</h3>
+In JavaScript, a function can be invoked using () operator as well as call() and apply() method as shown below.
+
+<pre>
+    function WhoIsThis() {{'{'}}
+        alert('Hi');
+    {{'}'}}
+    
+    WhoIsThis();
+    WhoIsThis.call();
+    WhoIsThis.apply();
+</pre>   
+
+<p>In the above example, WhoIsThis(), WhoIsThis.call() and WhoIsThis.apply() executes a function in the same way.</p>
+<p>The main purpose of call() and apply() is to set the context of this inside a function irrespective whether that function is being called in the global scope or as object's method.</p>
+<p>You can pass an object as a first parameter in call() and apply() to which the this inside a calling function should point to.</p>
+<p>The following example demonstrates the call() & apply().</p>
+
+<pre>
+    var myVar = 100;
+
+    function WhoIsThis() {{'{'}}
+    
+        alert(this.myVar);
+    {{'}'}}
+    
+    var obj1 = {{'{'}} myVar : 200 , whoIsThis: WhoIsThis {{'}'}};
+    
+    var obj2 = {{'{'}} myVar : 300 , whoIsThis: WhoIsThis {{'}'}};
+    
+    WhoIsThis(); // 'this' will point to window object
+    
+    WhoIsThis.call(obj1); // 'this' will point to obj1
+    
+    WhoIsThis.apply(obj2); // 'this' will point to obj2
+    
+    obj1.whoIsThis.call(window); // 'this' will point to window object
+    
+    WhoIsThis.apply(obj2); // 'this' will point to obj2
+</pre>    
+
+As you can see in the above example, when the function WhoIsThis is called using () operator (like WhoIsThis()) then this inside a function follows the rule- refers to window object. However, when the WhoIsThis is called using call() and apply() method then this refers to an object which is passed as a first parameter irrespective of how the function is being called.
+<br/>
+Therefore, this will point to obj1 when a function got called as WhoIsThis.call(obj1). In the same way, this will point to obj2 when a function got called like WhoIsThis.apply(obj2)
+<br/>
+<h3>bind()</h3>
+It can be used to set the context of 'this' to a specified object when a function is invoked.
+<br/>
+The bind() method is usually helpful in setting up the context of this for a callback function. Consider the following example.
+<pre>
+var myVar = 100;    
+function SomeFunction(callback)
+{{'{'}}
+    var myVar = 200;   
+    callback();
+{{'}'}};         
+var obj = {{'{'}}
+    myVar: 300,
+    WhoIsThis : function() {{'{'}}
+        alert("'this' points to " + this + ", myVar = " + this.myVar);
+    {{'}'}}
+{{'}'}};         
+SomeFunction(obj.WhoIsThis); 
+SomeFunction(obj.WhoIsThis.bind(obj)); 
+</pre>
+<p>
+In the above example, when you pass <b>obj.WhoIsThis</b> as a parameter to the <b>SomeFunction()</b> then <b>this</b> points to global window object insted of obj, because <b>obj.WhoIsThis()</b> will be executed as a global function by JavaScript engine. You can solve this problem by explicitly setting this value using <b>bind()</b> method. Thus, <b>SomeFunction(obj.WhoIsThis.bind(obj))</b> will set this to obj by specifying <b>obj.WhoIsThis.bind(obj)</b>.
+<h3>Precedence</h3>
+<p>So these 4 rules applies to this keyword in order to determine which object this refers to. The following is precedence of order.</p>
+<ol>
+    <li>bind()</li>
+    <li>call() and apply()</li>
+    <li>Object method</li>
+    <li>Global scope</li>
+</ol>
+<p>So, first check whether a function is being called as callback function using bind()? If not then check whether a function is being called using call() or apply() with parmeter? If not then check whether a function is being called as an object function? Otherise check whether a function is being called in the global scope without dot notation or using window object.</p>
+Thus, use these simple rules in order to know which object the 'this' refers to inside any function.
+</div>    

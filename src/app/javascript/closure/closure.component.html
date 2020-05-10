@@ -3,6 +3,7 @@
         <mat-icon aria-hidden="false">keyboard_backspace</mat-icon>
     </a>
    <h3 class="text-center">Closure</h3>
+   <p>Closure means that an inner function always has access to the vars and parameters of its outer function, even after the outer function has returned.</p>
    A closure is the combination of a function and the lexical environment within which that function was declared.
      <br/><pre>
      function a(){{'{'}}
@@ -23,7 +24,126 @@
         For this reason, when myFunc is invoked, the variable v remains available 
         for use and "Clouser" is passed to alert.<br/><br/>
 
-        var r = a => b => c => d => a+b+c+d;<br/>
-     
-        console.log(r(1)(2)(3)(4));
+      <p>Inner function can access variables and parameters of an outer function (however, cannot access arguments object of outer function). Consider the following example.</p>
+      <pre>
+        function OuterFunction() {{'{'}}
+
+          var outerVariable = 1;
+      
+          function InnerFunction() {{'{'}}
+              alert(outerVariable);
+          {{'}'}}
+      
+          InnerFunction();
+      {{'}'}}
+      </pre>  
+      In the above example, InnerFunction() can access outerVariable.
+<br/>
+Now, as per the definition above, InnerFunction() can access outerVariable even if it will be executed separately. Consider the following example.
+<br/>
+<pre>
+  function OuterFunction() {{'{'}}
+
+    var outerVariable = 100;
+
+    function InnerFunction() {{'{'}}
+        alert(outerVariable);
+    {{'}'}}
+
+    return InnerFunction;
+{{'}'}}
+var innerFunc = OuterFunction();
+
+innerFunc(); // 100
+</pre>  
+In the above example, return InnerFunction; returns InnerFunction from OuterFunction when you call OuterFunction(). A variable innerFunc reference the InnerFunction() only, not the OuterFunction(). So now, when you call innerFunc(), it can still access outerVariable which is declared in OuterFunction(). This is called Closure.
+<br/>
+One important characteristic of closure is that outer variables can keep their states between multiple calls. Remember, inner function does not keep the separate copy of outer variables but it reference outer variables, that means value of the outer variables will be changed if you change it using inner function.
+<br/>
+<pre>
+function Counter() {{'{'}}
+    var counter = 0;
+
+    function IncreaseCounter() {{''}}
+        return counter += 1;
+    {{'}'}};
+
+    return IncreaseCounter;
+{{'}'}}
+
+var counter = Counter();
+alert(counter()); // 1
+alert(counter()); // 2
+alert(counter()); // 3
+alert(counter()); // 4
+</pre>  
+In the above example, outer function Counter returns the reference of inner function IncreaseCounter(). IncreaseCounter increases the outer variable counter to one. So calling inner function multiple time will increase the counter to one each time.
+<br/>
+Closure is valid in multiple levels of inner functions.
+<br/>
+<pre>
+  function Counter() {{'{'}}
+    
+    var counter = 0;
+
+    setTimeout( function () {{'{'}}
+        var innerCounter = 0;
+        counter += 1;
+        alert("counter = " + counter);
+
+        setTimeout( function () {{'{'}}
+            counter += 1;
+            innerCounter += 1;
+            alert("counter = " + counter + ", innerCounter = " + innerCounter)
+        {{'}'}}, 500);
+
+    {{'}'}}, 1000);
+{{'}'}};
+
+Counter();
+</pre>  
+As per the closure definition, if inner function access the variables of outer function then only it is called closure.
+<br/>
+The following is not a closure.
+<pre>
+  var Counter = (function () {{'{'}}
+    var i = 0;
+    return {{'{'}} counter : i += 1 {{'}'}};
+{{'}'}})();
+</pre>
+
+<h3>When to use Closure?</h3>
+Closure is useful in hiding implementation detail in JavaScript. In other words, it can be useful to create private variables or functions.
+<br/>
+The following example shows how to create private functions & variable.
+<br/>
+<pre>
+  var counter = (function() {{'{'}}
+    var privateCounter = 0;
+    function changeBy(val) {{'{'}}
+      privateCounter += val;
+    {{'}'}}
+    return {{'{'}}
+      increment: function() {{'{'}}
+        changeBy(1);
+      {{'}'}},
+      decrement: function() {{'{'}}
+        changeBy(-1);
+      {{'}'}},
+      value: function() {{'{'}}
+        return privateCounter;
+      {{'}'}}
+    {{'}'}};   
+  {{'}'}})();
+  
+  alert(counter.value()); // 0
+  counter.increment();
+  counter.increment();
+  alert(counter.value()); // 2
+  counter.decrement();
+  alert(counter.value()); // 1
+</pre>  
+<p>In the above example, increment(), decrement() and value() becomes public function because they are included in the return object, whereas changeBy() function becomes private function because it is not returned and only used internally by increment() and decrement().</p>
+var r = a => b => c => d => a+b+c+d;<br/>
+console.log(r(1)(2)(3)(4));
 </div>

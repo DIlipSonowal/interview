@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { KannadaComponent } from './kannada/kannada.component';
 
 const routes: Routes = [
   { path:'', redirectTo:'home', pathMatch:'full'},
@@ -12,7 +13,9 @@ const routes: Routes = [
   { path:'react', loadChildren: ()=> import('./react/react.module').then(m => m.ReactModule)},
   { path:'html', loadChildren: ()=> import('./html/html.module').then(m => m.HtmlModule)},
   { path:'', loadChildren:() =>import('./ionic/ionic.module').then(m => m.IonicModule)},
-  { path:'pagenotfound', component: PagenotfoundComponent}
+  { path:'aggrid', loadChildren:()=>import('./ag-grid/ag-grid.module').then(m=>m.AgGridModule)},
+  { path:'pagenotfound', component: PagenotfoundComponent},
+  { path:'kannada', component:KannadaComponent}
 ];
 
 @NgModule({

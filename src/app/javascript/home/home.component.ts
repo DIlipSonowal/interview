@@ -432,6 +432,48 @@ for (let user of set) {
   q:'Array',
   link:'array',
   a:`-------------`
+},
+{
+  id:10,
+  q:'Object',
+  link: 'objects',
+  a:'------'
+},
+{
+  id:11,
+  q:'this keyword',
+  link:'thiskey',
+  a:'---'
+},
+{
+  id:12,
+  q:'new keyword',
+  link:'newkey',
+  a:'------'
+},
+{
+  id:13,
+  q:'Prototype',
+  link:'prototype',
+  a:'------'
+},
+{
+  id:14,
+  q:'Inheritance',
+  link:'inheritance',
+  a:'----'
+},
+{
+  id:15,
+  q:'IIFE',
+  link:'iife',
+  a:'----'
+},
+{
+  id:16,
+  q:'Window',
+  link:'window',
+  a:'----'
 }
   ];
 

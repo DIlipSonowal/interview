@@ -14,13 +14,37 @@ import { PushPopComponent } from './array/push-pop/push-pop.component';
 import { ShiftUnshiftComponent } from './array/shift-unshift/shift-unshift.component';
 import { OfComponent } from './array/of/of.component';
 import { FlatComponent } from './array/flat/flat.component';
+import { ObjectComponent } from './object/object.component';
+import { ThiskeywordComponent } from './thiskeyword/thiskeyword.component';
+import { NewkeywordComponent } from './newkeyword/newkeyword.component';
+import { PrototypeComponent } from './prototype/prototype.component';
+import { InheritanceComponent } from './inheritance/inheritance.component';
+import { IifeComponent } from './iife/iife.component';
+import { WindowComponent } from './window/window.component';
+import { ScreenComponent } from './screen/screen.component';
 
 @NgModule({
   declarations: [
     JavascriptComponent, 
     HomeComponent, 
     AbcComponent, 
-    ClosureComponent, ArrayComponent, ReduceComponent, SliceComponent, SpliceComponent, PushPopComponent, ShiftUnshiftComponent, OfComponent, FlatComponent
+    ClosureComponent, 
+    ArrayComponent, 
+    ReduceComponent, 
+    SliceComponent, 
+    SpliceComponent, 
+    PushPopComponent, 
+    ShiftUnshiftComponent, 
+    OfComponent, 
+    FlatComponent, 
+    ObjectComponent, 
+    ThiskeywordComponent, 
+    NewkeywordComponent, 
+    PrototypeComponent, 
+    InheritanceComponent,
+    IifeComponent,
+    WindowComponent,
+    ScreenComponent
   ],
   imports: [
     JavascriptRoutingModule,

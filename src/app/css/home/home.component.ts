@@ -409,6 +409,34 @@ div ~ p {
         < div>4< /div>
     < /div >    
     </pre>
+    The <b>flex</b> property is the shorthand property for flex-grow, flex-shrink and flex-basis properties<br/>
+    Make the third flex item not growable (0), not shrinkable (0), and with an initial length of 200 pixels:<br/>
+    <pre>
+    < div class="flex-container">
+      < div>1< /div>
+      < div>2< /div>
+      < div style="flex: 0 0 200px">3< /div>
+      < div>4< /div>
+    < /div>
+    </pre>
+    The <b>align-self</b> property specifies the alignment for the selected item inside the flexible container.<br/>
+    The <b>align-self</b> property overrides the default alignment set by the containers <b>align-item</b> property.
+    <pre>
+    < div class="flex-container">
+      < div>1< /div>
+      < div>2< /div>
+      < div style="align-self: center">3< /div>
+      < div>4< /div>
+    < /div>
+    </pre>
+    Align the second flex item at the top of the container, and the third flex item at the bottom of the container:
+    <pre>
+    < div class="flex-container">
+      < div>1< /div>
+      < div style="align-self: flex-start">2< /div>
+      < div style="align-self: flex-end">3< /div>
+    < /div>
+    </pre>
     `
     },
 
@@ -672,6 +700,70 @@ div#myid {
       <p><b>visibility:hidden</b> - is also used to hide an element from the DOM without deleting it, but it will occupy the space in the DOM</p>.
       `
     },
+    {
+      id:13,
+      q:'object-fit',
+      a:`The CSS object-fit property is used to specify how an < img > or < video > should be resized to fit its container.<br/>
+      This property tells the content to fill the container in a variety of ways; such as "preserve that aspect ratio" or "stretch up and take up as much space as possible".<br/>
+      The object-fit property can have the following values:<br/>
+      <ul>
+        <li><b>fill -</b> This is default. The replaced content is sized to fill the element's content box. If necessary, the object will be stretched or squished to fit</li>
+        <li><b>contain -</b> The replaced content is scaled to maintain its aspect ratio while fitting within the element's content box</li>
+        <li><b>cover -</b> The replaced content is sized to maintain its aspect ratio while filling the element's entire content box. The object will be clipped to fit</li>
+        <li><b>none -</b> The replaced content is not resized</li>
+        <li><b>scale-down -</b> The content is sized as if none or contain were specified (would result in a smaller concrete object size)</li>
+      </ul>`
+    },
+    {
+      id:14,
+      q:'Transforms',
+      a:`<b>CSS 2D Transforms Methods</b><br/>
+      With the CSS transform property you can use the following 2D transformation methods:<br/>
+      <ul>
+      <li>translate()</li>
+      <li>rotate()</li>
+      <li>scaleX()</li>
+      <li>scaleY()</li>
+      <li>scale()</li>
+      <li>skewX()</li>
+      <li>skewY()</li>
+      <li>skew()</li>
+      <li>matrix()</li>
+      </ul>
+      The translate() method moves an element from its current position (according to the parameters given for the X-axis and the Y-axis).<br/>
+      The following example moves the < div> element 50 pixels to the right, and 100 pixels down from its current position:<br/>
+      <pre>
+      div {
+        transform: translate(50px, 100px);
+      }</pre>
+      <b>The rotate() Method</b><br/>
+      The rotate() method rotates an element clockwise or counter-clockwise according to a given degree.<br/>
+      The following example rotates the < div> element clockwise with 20 degrees:<br/>
+      <pre>
+      div {
+        transform: rotate(20deg);
+      }</pre>
+      Using negative values will rotate the element counter-clockwise.<br/>
+      The following example rotates the < div> element counter-clockwise with 20 degrees:
+      <pre>
+      div {
+        transform: rotate(-20deg);
+      }</pre>
+      <b>The scale() Method</b>
+      The scale() method increases or decreases the size of an element (according to the parameters given for the width and height).<br/>
+      The following example increases the < div> element to be two times of its original width, and three times of its original height:<br/>
+      <pre>
+      div {
+        transform: scale(2, 3);
+      }</pre>
+      The following example decreases the < div> element to be half of its original width and height: <br/>
+      <pre>div {
+        transform: scale(0.5, 0.5);
+      }</pre>
+      <b>The scaleX() Method</b>
+      
+      `
+    }
   ];
 
   question: string;

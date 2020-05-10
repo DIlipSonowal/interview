@@ -1,0 +1,399 @@
+<div style="margin: 1%;">
+    <a routerLink="/javascript">&lArr;</a>
+    <h2>Define class in Javascript</h2>
+<p>JavaScript ECMAScript 5, does not have class type. So it does not support full object oriented programming concept as other languages like Java or C#. However, you can create a function in such a way so that it will act as a class.</p>
+
+<p>The following example demonstrates how a function can be used like a class in JavaScript.</p>
+
+<pre>
+    function Person() {{'{'}}
+        this.firstName = "unknown";
+        this.lastName = "unknown";
+    {{'}'}}
+    
+    var person1 = new Person();
+    person1.firstName = "Steve";
+    person1.lastName = "Jobs";
+                
+    alert(person1.firstName + " " + person1.lastName);
+    
+    var person2 = new Person();
+    person2.firstName = "Bill";
+    person2.lastName = "Gates";
+                
+    alert(person2.firstName + " " + person2.lastName );
+</pre>
+<h3>Add Methods in a Class</h3>
+<p>We can add a function expression as a member variable in a function in JavaScript. This function expression will act like a method of class.</p>
+
+<pre>
+function Person() {{'{'}}
+    this.firstName = "unknown";
+    this.lastName = "unknown";
+    this.getFullName = function(){{'{'}}
+        return this.firstName + " " + this.lastName;
+    {{'}'}}
+{{'}'}};
+
+var person1 = new Person();
+person1.firstName = "Steve";
+person1.lastName = "Jobs";
+
+alert(person1.getFullName());
+ 
+var person2 = new Person();
+person2.firstName = "Bill";
+person2.lastName = "Gates";
+
+alert(person2.getFullName());
+</pre>
+<h3>Constructor</h3>
+<p>In the other programming languages like Java or C#, a class can have one or more constructors. In JavaScript, a function can have one or more parameters. So, a function with one or more parameters can be used like a constructor where you can pass parameter values at the time or creating an object with new keyword.</p>
+<pre>
+function Person(FirstName, LastName, Age) {{'{'}}
+    this.firstName = FirstName || "unknown";
+    this.lastName = LastName || "unknown";
+    this.age = Age || 25;
+    this.getFullName = function (){{'{'}}
+        return this.firstName + " " + this.lastName;
+    {{'}'}}
+{{'}'}};
+var person1 = new Person("James","Bond",50);
+alert(person1.getFullName());
+
+var person2 = new Person("Tom","Paul");
+alert(person2.getFullName());
+</pre>    
+
+<h3>Properties with Getters and Setters</h3>
+<p>As you learned in the previous section, Object.defineProperty() method can be used to define a property with getter & setter.</p>
+
+<p>The following example shows how to create a property with getter & setter.</p>
+<pre>
+function Person() {{'{'}}
+        var _firstName = "unknown";
+    
+        Object.defineProperties(this, {{'{'}}
+            "FirstName": {{'{'}}
+                get: function () {{'{'}}
+                    return _firstName;
+                {{'}'}},
+                set: function (value) {{'{'}}
+                    _firstName = value;
+                {{'}'}}
+            {{'}'}}
+        {{'}'}});
+{{'}'}};
+    
+    var person1 = new Person();
+    person1.FirstName = "Steve";
+    alert(person1.FirstName );
+                
+    var person2 = new Person();
+    person2.FirstName = "Bill";
+    alert(person2.FirstName );
+
+    **************************************
+
+    function Person(firstName, lastName, age)  {{'{'}}
+        var _firstName = firstName || "unknown";
+        var _lastName = lastName || "unknown";
+        var _age = age || 25;
+    
+        Object.defineProperties(this,  {{'{'}}
+            "FirstName":  {{'{'}}
+                get: function ()  {{'{'}} return _firstName {{'}'}},
+                set: function (value)  {{'{'}} _firstName = value {{'}'}}
+            {{'}'}},
+            "LastName":  {{'{'}}
+                get: function ()  {{'{'}} return _lastName {{'}'}},
+                set: function (value)  {{'{'}} _lastName = value {{'}'}}
+            {{'}'}},
+            "Age":  {{'{'}}
+                get: function ()  {{'{'}} return _age {{'}'}},
+                set: function (value)  {{'{'}} _age = value {{'}'}}
+            {{'}'}}
+        {{'}'}});
+    
+        this.getFullName = function ()  {{'{'}}
+                return this.FirstName + " " + this.LastName;
+        {{'}'}}
+    {{'}'}};
+    
+    var person1 = new Person();
+    person1.FirstName = "John";
+    person1.LastName = "Bond";
+        
+    alert(person1.getFullName());
+</pre>    
+<h3>Undefined Property or Method</h3>
+<p>JavaScript will return 'undefined' if you try to access properties or call methods that do not exist.</p>
+<p>If you are not sure whether an object has a particular property or not, then use hasOwnProperty() method before accessing properties.</p>
+<pre>
+var person = new Object();
+person.firstName; // returns undefined    
+if(person.hasOwnProperty("firstName")){{'{'}}
+    person.firstName;
+{{'}'}}
+</pre>    
+
+<h3>Access Object Keys.</h3>
+<p>Use for..in loop to get the list of all properties and methods of an object.</p>
+<pre>
+    var person = new Object();   
+    person.firstName = "James";
+    person["lastName"] = "Bond";
+    person.age = 25;
+    person.getFullName = function () {{'{'}}
+        return this.firstName + ' ' + this.lastName;
+    {{'}'}};
+    
+    for(var key in person){{'{'}}
+        alert(key);
+    {{'}'}};
+</pre>
+<p>object in JavaScript can be created using object literal, object constructor or constructor function. Object includes properties. Each property can either be assigned a literal value or a function.</p>
+
+<p>Consider the following example of objects created using object literal and constructor function.</p>    
+<pre>
+//Object literal
+var person = {{'{'}}
+    firstName: 'Dilip',
+    lastName:'Sonowal'
+{{'}'}}
+//Constructor function
+function Student(){{'{'}}
+    this.name = "Dilip";
+    this.gender = "Male";
+    this.sayHi = function(){{'{'}}
+        alert("Hi");
+    {{'}'}}
+{{'}'}}
+
+var student1 = new Student();
+console.log(student1.name);
+console.log(student1.gender);
+student1.sayHi();
+</pre>    
+<p>Use Object.keys() method to retrieve all the properties name for the specified object as a string array.</p>
+<pre>
+    Object.keys(student1)
+    //["name", "gender", "sayHi"]
+</pre>    
+<p>Use for-in loop to retrieve all the properties of an object as shown below.</p>
+<pre>
+    function Student(){{'{'}}
+        this.title = "Mr.";
+        this.name = "Steve";
+        this.gender = "Male";
+        this.sayHi = function(){{'{'}}   
+          alert('Hi');
+        {{'}'}}
+      {{'}'}}
+      var student1 = new Student();
+      
+      //enumerate properties of student1
+      for(var prop in student1){{'{'}}
+        console.log(prop);
+      {{'}'}}
+</pre>    
+
+<h3>Property Descriptor</h3>
+<p>In JavaScript, each property of an object has property descriptor which describes the nature of a property. Property descriptor for a particular object's property can be retrieved using Object.getOwnPropertyDescriptor() method.</p>
+<pre>Object.getOwnPropertyDescriptor(object, 'property name')</pre>
+<p>The getOwnPropertyDescriptor method returns a property descriptor for a property that directly defined in the specified object but not inherited from object's prototytpe.
+<br/>
+The following example display property descriptor to the console.</p>
+<pre>
+    //Object literal
+    var person = {{'{'}}
+        firstName: 'Dilip',
+        lastName:'Sonowal'
+    {{'}'}}
+    //Constructor function
+    function Student(){{'{'}}
+        this.name = "Dilip";
+        this.gender = "Male";
+        this.sayHi = function(){{'{'}}
+            alert("Hi");
+        {{'}'}}
+    {{'}'}}
+
+    console.log(Object.getOwnPropertyDescriptor(person,'firstName'));
+    console.log(Object.getOwnPropertyDescriptor(Student, 'name'));
+
+    Object {{'{'}}value: "Dilip", writable: true, enumerable: true, configurable: true{{'}'}}
+    Object {{'{'}}value: "Dilip", writable: true, enumerable: true, configurable: true{{'}'}}
+</pre>    
+<h3>Object.defineProperty()</h3>
+<p>The Object.defineProperty() method defines a new property on the specified object or modifies an existing property or property descriptor.</p>
+<pre>Object.defineProperty(object, 'property name', descriptor)</pre>
+<p>The following example demonstrates modifying property descriptor.</p>
+<pre>
+    'use strict'
+
+    function Student(){{'{'}}
+      this.name = "Steve";
+      this.gender = "Male";
+    {{'}'}}
+    
+    var student1 = new Student();
+    
+    Object.defineProperty(student1,'name', {{'{'}} writable:false{{'}'}} );
+    
+    try{{'{'}}
+        student1.name = "James";
+        console.log(student1.name);
+    {{'}'}}
+    catch(ex){{'{'}}
+        console.log(ex.message);
+    {{'}'}}
+</pre>    
+The above example, it modifies writable attribute of name property of student1 object using Object.defineProperty(). So, name property can not be changed. If you try to change the value of name property then it would throw an exception in strict mode. In non-strict mode, it won't throw an exception but it also won't change a value of name property either.
+<br/>
+The same way, you can change enumerable property descriptor as shown below.
+<pre>
+    function Student(){{'{'}}
+        this.name = "Steve";
+        this.gender = "Male";
+    {{'}'}}
+      
+      var student1 = new Student();
+      
+      //enumerate properties of student1
+      for(var prop in student1){{'{'}}
+        console.log(prop);
+      {{'}'}}
+      
+      //edit enumerable attributes of name property to false
+      Object.defineProperty(student1,'name',{{'{'}} enumerable:false {{'}'}});
+      
+      console.log('After setting enumerable to false:');
+      
+      for(var prop in student1){{''}}
+        console.log(prop);
+      {{'}'}}
+</pre>    
+In the above example, it display all the properties using for-in loop. But, once you change the enumerable attribute to false then it won't display name property using for-in loop. As you can see in the output, after setting enumerable attributes of name property to false, it will not be enumerated using for-in loop or even Object.keys() method.
+<br/>
+The Object.defineProperty() method can also be used to modify configurable attribute of a property which restrict changing any property descriptor attributes further.
+<br/>
+The following example demonstrates changing configurable attribute.
+<pre>
+    'use strict';
+
+    function Student(){{'{'}}
+      this.name = "Steve";
+      this.gender = "Male";
+    {{'}'}}
+    var student1 = new Student();
+    
+    Object.defineProperty(student1,'name',{{'{'}}configurable:false{{'}'}});// set configurable to false
+    
+    try
+    {{'{'}}
+        Object.defineProperty(student1,'name',{{'{'}}writable:false{{'}'}}); // change writable attribute
+    {{'}'}}
+    catch(ex)
+    {{'{'}}
+        console.log(ex.message);
+    {{'}'}}
+</pre>    
+
+<h3>Define New Property</h3>
+The Object.defineProperty() method can also be used to define a new properties with getters and setters on an object as shown below.
+
+<pre>
+function Student(){{'{'}}
+    this.title = "Mr";
+    this.name = "Dilip Sonowal";
+{{'}'}}
+var s1 = new Student();
+Object.defineProperty(s1, 'fullName', {{'{'}}
+    get: function(){{'{'}}
+        return this.title+' '+this.name;
+    {{'}'}},
+    set:function(_fullname){{'{'}}
+        var tmp = _fullname.split(' ');
+        this.title = tmp[0];
+        this.name = tmp[1];
+    {{'}'}}
+{{'}'}});
+
+s1.fullName = "Mr Dilip";
+console.log(s1.title, s1.name);
+</pre>    
+<h3>JavaScript for...in Loop</h3>
+The JavaScript for...in statement loops through the properties of an object.
+<pre>
+for (variable in object) {{'{'}}
+    // code to be executed
+{{'}'}}
+</pre>
+The block of code inside of the for...in loop will be executed once for each property.
+<br/>
+Looping through the properties of an object:
+<br/>
+<pre>
+var person = {{'{'}}fname:"John", lname:"Doe", age:25{{'}'}};
+for (x in person) {{'{'}}
+  txt += person[x];
+{{'}'}}
+</pre>
+<h3>Adding New Properties</h3>
+You can add new properties to an existing object by simply giving it a value.
+<br/>
+<pre>person.nationality = "English";</pre>
+<h3>Deleting Properties</h3>
+The delete keyword deletes a property from an object:
+<pre>delete person.age;</pre>
+The delete keyword deletes both the value of the property and the property itself.
+<br/>
+After deletion, the property cannot be used before it is added back again.
+<br/>
+The delete operator is designed to be used on object properties. It has no effect on variables or functions.
+<br/>
+The delete operator should not be used on predefined JavaScript object properties. It can crash your application.
+<br/>
+
+<table border="1" cellpadding="2">
+    <thead>
+    <tr>
+        <th class="w-25">Attribute 
+        </th>
+        <th class="w-75">Description
+        </th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>value
+        </td>
+        <td>Contains an actual value of a property.
+        </td>
+    </tr>
+    <tr>
+        <td>writable
+        </td>
+        <td>Indicates that whether a property is writable or read-only. If true than value can be changed and if false then value cannot be changed and will throw an exception in strict mode
+        </td>
+    </tr>
+    <tr>
+        <td>enumerable
+        </td>
+        <td>Indicates whether a property would show up during the enumeration using for-in loop or Object.keys() method.
+        </td>
+    </tr>
+    <tr>
+        <td>configurable
+        </td>
+        <td>Indicates whether a property descriptor for the specified property can be changed or not. If true then any of this 4 attribute of a property can be changed using Object.defineProperty() method.
+        </td>
+    </tr>
+</tbody>
+</table>
+
+<h3>Prototype Properties</h3>
+<p>JavaScript objects inherit the properties of their prototype.</p>
+<p>The delete keyword does not delete inherited properties, but if you delete a prototype property, it will affect all objects inherited from the prototype.</p>
+</div>

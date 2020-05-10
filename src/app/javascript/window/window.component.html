@@ -1,0 +1,52 @@
+<div style="margin:2%">
+<a routerLink="/javascript">&lArr;</a>
+<h2>JavaScript Window - The Browser Object Model</h2>
+The Browser Object Model (BOM) allows JavaScript to "talk to" the browser.
+<br/>
+<h3>The Browser Object Model (BOM)</h3>
+There are no official standards for the Browser Object Model (BOM).
+<br/>
+Since modern browsers have implemented (almost) the same methods and properties for JavaScript interactivity, it is often referred to, as methods and properties of the BOM.
+
+<h3>The Window Object</h3>
+The window object is supported by all browsers. It represents the browser's window.
+<br/>
+All global JavaScript objects, functions, and variables automatically become members of the window object.
+<br/>
+Global variables are properties of the window object.
+<br/>
+Global functions are methods of the window object.
+<br/>
+Even the document object (of the HTML DOM) is a property of the window object:
+<br/>
+<pre>window.document.getElementById("header");</pre>
+is the same as:
+<pre>document.getElementById("header");</pre>
+<h3>Window Size</h3>
+Two properties can be used to determine the size of the browser window.
+<br/>
+Both properties return the sizes in pixels:
+<br/>
+<ul>
+<li>window.innerHeight - the inner height of the browser window (in pixels)</li>
+<li>window.innerWidth - the inner width of the browser window (in pixels)</li>
+</ul>
+A practical JavaScript solution (covering all browsers):
+<pre>
+    var w = window.innerWidth
+    || document.documentElement.clientWidth
+    || document.body.clientWidth;
+    
+    var h = window.innerHeight
+    || document.documentElement.clientHeight
+    || document.body.clientHeight;
+</pre>    
+<h3>Other Window Methods</h3>
+Some other methods:
+<pre>
+window.open() - open a new window
+window.close() - close the current window
+window.moveTo() - move the current window
+window.resizeTo() - resize the current window
+</pre>
+</div>

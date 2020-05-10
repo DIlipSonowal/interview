@@ -1,0 +1,74 @@
+<div style="margin: 2%;">
+    <a routerLink="/javascript">&lArr;</a>
+   <h2>new Keyword</h2>
+   An object can be created with new keyword. Here, you will learn about the steps it performs while creating an object.
+   <br/>
+   <pre>
+    function MyFunc() {{'{'}}
+        this.x = 100;
+    {{'}'}}
+    
+    var obj1 = new MyFunc();
+    obj1.x;
+   </pre> 
+   In the above example, we have created an object of MyFunc using new keyword. This MyFunc() is called a constructor function. The new keyword constructs and returns an object (instance) of a constructor function
+
+   <h3>The new keyword performs following four tasks:</h3>
+<ol>
+<li>It creates new empty object e.g. obj = {{'{ }'}} ;</li>
+<li>It sets new empty object's invisible 'prototype' property to be the constructor function's visible and accessible 'prototype' property. (Every function has visible 'prototype' property whereas every object includes invisible 'prototype' property)</li>
+<li>It binds property or function which is declared with this keyword to the new object.</li>
+<li>It returns newly created object unless the constructor function returns a non-primitive value (custom JavaScript object). If constructor function does not include return statement then compiler will insert 'return this;' implicitly at the end of the function. If the constructor function returns a primitive value then it will be ignored.</li>
+</ol>
+Let's see how new keyword creates an object using following example.
+<pre>
+    function MyFunc() {{'{'}}
+        var myVar = 1;
+        this.x = 100;
+    {{'}'}}    
+    MyFunc.prototype.y = 200;   
+    var obj1 = new MyFunc();
+    obj1.x; // 100
+    obj1.y; // 200
+</pre>
+Let's understand what happens when you create an object (instance) of MyFunc() using new keyword.
+<br/>
+First of all, new keyword creates an empty object - {{'{ }'}}.
+<br/>
+Second, it set's invisible 'prototype' property (or attribute) of this empty object to myFunc's prototype property. As you can see in the above example, we have assigned new property 'y' using MyFunc.prototype.y. So, new empty object will also have same prototype property as MyFunc which includes y property.
+<br/>
+In third step, it binds all the properties and function declared with this keyword to new empty object. Here, MyFunc includes only one property x which is declared with this keyword. So new empty object will now include x property. MyFunc also includes myVar variable which does not declared with this keyword. So myVar will not be included in new object.
+<br/>
+In the fourth and last step, it will return this newly created object. MyFunc does not include return statement but compiler will implicitly insert 'return this' at the end.
+<br/>
+So thus, object of MyFunc will be returned using new keyword.
+<br/>
+The following figure illustrates the above process.<br/>
+<img src="assets/new-keyword.png" /><br/>
+The new keyword ignores return statement that returns primitive value.<br/>
+<pre>
+    function MyFunc() {{'{'}}
+        this.x = 100;
+        
+        return 200;
+    {{'}'}}
+    
+    var obj = new MyFunc();
+    alert(obj.x); // 100
+</pre>    
+
+If function returns non-primitive value (custom object) then new keyword does not perform above 4 tasks.
+<br/>
+<pre>
+    function MyFunc() {{'{'}}
+        this.x = 100;
+                   
+        return {{'{'}} a: 123 {{'}'}};
+    {{'}'}}
+    
+    var obj1 = new MyFunc();
+    
+    alert(obj1.x); // undefined
+</pre>    
+Thus, new keyword builds an object of a function in JavaScript.
+</div>    

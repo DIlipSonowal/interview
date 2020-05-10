@@ -1,0 +1,182 @@
+<div style="margin: 2%;">
+    <a routerLink="/javascript">&lArr;</a>
+    <h2>Prototype</h2>
+    JavaScript is a dynamic language. You can attach new properties to an object at any time as shown below.
+    <br/>
+<pre>
+    function Student() {{'{'}}
+        this.name = 'John';
+        this.gender = 'Male';
+    {{'}'}}
+    
+    var studObj1 = new Student();
+    studObj1.age = 15;
+    alert(studObj1.age); // 15
+    
+    var studObj2 = new Student();
+    alert(studObj2.age); // undefined
+</pre>    
+
+As you can see in the above example, age property is attached to studObj1 instance. However, studObj2 instance will not have age property because it is defined only on studObj1 instance.
+<br>
+So what to do if we want to add new properties at later stage to a function which will be shared across all the instances?
+<br/>
+<h3>The answer is Prototype.</h3>
+The prototype is an object that is associated with every functions and objects by default in JavaScript, where function's prototype property is accessible and modifiable and object's prototype property (aka attribute) is not visible.
+<br/>
+Every function includes prototype object by default.
+<br/>
+The prototype object is special type of enumerable object to which additional properties can be attached to it which will be shared across all the instances of it's constructor function.
+<br/>
+So, use prototype property of a function in the above example in order to have age properties across all the objects as shown below.
+<br/>
+<pre>
+    function Student() {{'{'}}
+        this.name = 'John';
+        this.gender = 'M';
+    {{'}'}}   
+    Student.prototype.age = 15;
+    
+    var studObj1 = new Student();
+    alert(studObj1.age); // 15
+    
+    var studObj2 = new Student();
+    alert(studObj2.age); // 15
+</pre>   
+<p>Every object which is created using literal syntax or constructor syntax with the new keyword, includes __proto__ property that points to prototype object of a function that created this object.</p>
+<img src="./assets/prototype-2.png" /><br/>
+You can debug and see object's or function's prototype property in chrome or firefox's developer tool. Consider the following example.
+<br/>
+<pre>
+function Student() {{'{'}}
+    this.name = 'John';
+    this.gender = 'M';
+{{'}'}}
+
+var studObj = new Student();
+
+console.log(Student.prototype); // object
+console.log(studObj.prototype); // undefined
+console.log(studObj.__proto__); // object
+
+console.log(typeof Student.prototype); // object
+console.log(typeof studObj.__proto__); // object
+
+console.log(Student.prototype === studObj.__proto__ ); // true
+</pre>
+As you can see in the above example, Function's prototype property can be accessed using < function-name >.prototype. However, an object (instance) does not expose prototype property, instead you can access it using __proto__.
+<br/>
+<table border="1">
+    <thead>
+        <tr>
+            <th>
+                Method
+            </th>
+            <th>
+                Description
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                hasOwnProperty()
+            </td>
+            <td>
+                Returns a boolean indicating whether an object contains the specified property as a direct property of that object and not inherited through the prototype chain.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                isPrototypeOf()
+            </td>
+            <td>
+                Returns a boolean indication whether the specified object is in the prototype chain of the object this method is called upon.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                propertyIsEnumerable()
+            </td>
+            <td>
+                Returns a boolean that indicates whether the specified property is enumerable or not.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                toLocaleString()
+            </td>
+            <td>
+                Returns string in local format.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                toString()
+            </td>
+            <td>
+                Returns string.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                valueOf
+            </td>
+            <td>
+                Returns the primitive value of the specified object.
+            </td>
+        </tr>
+    </tbody>
+</table>
+<h3>Changing Prototype</h3>
+<p>As mentioned above, each object's prototype is linked to function's prototype object. If you change function's prototype then only new objects will be linked to changed prototype. All other existing objects will still link to old prototype of function. The following example demonstrates this scenario.</p>
+
+<pre>
+    function Student() {{'{'}}
+        this.name = 'John';
+        this.gender = 'M';
+    {{'}'}}
+    
+    Student.prototype.age = 15;
+    
+    var studObj1 = new Student();
+    alert('studObj1.age = ' + studObj1.age); // 15
+    
+    var studObj2 = new Student();
+    alert('studObj2.age = ' + studObj2.age); // 15
+    
+    Student.prototype = {{'{'}} age : 20 {{'}'}};
+    
+    var studObj3 = new Student();
+    alert('studObj3.age = ' + studObj3.age); // 20
+    
+    alert('studObj1.age = ' + studObj1.age); // 15
+    alert('studObj2.age = ' + studObj2.age); // 15    
+</pre>
+<h3>Use of Prototype</h3>
+<p>The prototype object is being used by JavaScript engine in two things, 1) to find properties and methods of an object 2) to implement inheritance in JavaScript.</p>
+<pre>
+    function Student() {{'{'}}
+        this.name = 'John';
+        this.gender = 'M';
+    {{'}'}}
+    
+    Student.prototype.sayHi = function(){{'{'}}
+        alert("Hi");
+    {{'}'}};
+    
+    var studObj = new Student();
+    studObj.toString();
+</pre>
+In the above example, toString() method is not defined in Student, so how and from where it finds toString()?
+<br>
+Here, prototype comes into picture. First of all, JavaScript engine checks whether toString() method is attached to studObj? (It is possible to attach a new function to a instance in JavaScript). If it does not find there then it uses studObj's __proto__ link which points to the prototype object of Student function. If it still cannot find it there then it goes up in the heirarchy and check prototype object of Object function because all the objects are derived from Object in JavaScript, and look for toString() method. Thus, it finds toString() method in the prototype object of Object function and so we can call studObj.toString().
+<br/>
+This way, prototype is useful in keeping only one copy of functions for all the objects (instances).
+<br/>
+The following figure illustrates the above scenario.
+<br/>
+<img src="./assets/prototype-3.png">
+<br/>
+
+</div>

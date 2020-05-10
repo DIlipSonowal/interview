@@ -12,6 +12,13 @@ import { PushPopComponent } from './array/push-pop/push-pop.component';
 import { ShiftUnshiftComponent } from './array/shift-unshift/shift-unshift.component';
 import { OfComponent } from './array/of/of.component';
 import { FlatComponent } from './array/flat/flat.component';
+import { ObjectComponent } from './object/object.component';
+import { ThiskeywordComponent } from './thiskeyword/thiskeyword.component';
+import { NewkeywordComponent } from './newkeyword/newkeyword.component';
+import { PrototypeComponent } from './prototype/prototype.component';
+import { InheritanceComponent } from './inheritance/inheritance.component';
+import { IifeComponent } from './iife/iife.component';
+import { WindowComponent } from './window/window.component';
 
 const routes: Routes = [
    { path:'', component:JavascriptComponent,
@@ -32,7 +39,14 @@ const routes: Routes = [
      ]
    },
    { path:'abc', component:AbcComponent},
-   { path:'clouser', component:ClosureComponent}
+   { path:'clouser', component:ClosureComponent},
+   { path:'objects', component:ObjectComponent},
+   { path:'thiskey', component:ThiskeywordComponent},
+   { path:'newkey', component:NewkeywordComponent},
+   { path:'prototype', component:PrototypeComponent},
+   { path:'inheritance', component:InheritanceComponent},
+   { path:'iife', component:IifeComponent},
+   { path:'window', component:WindowComponent}
 ];
 
 @NgModule({
