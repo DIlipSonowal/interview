@@ -18,7 +18,35 @@
   < img draggable="true" >
 </p>
 <p>What to Drag - ondragstart and setData()</p>
-
+<pre>
+    &lt;script&gt;
+        function allowDrop(ev) {{'{'}}
+          ev.preventDefault();
+        {{'}'}}
+        
+        function drag(ev) {{'{'}}
+          ev.dataTransfer.setData("text", ev.target.id);
+        {{'}'}}
+        
+        function drop(ev) {{'{'}}
+          ev.preventDefault();
+          var data = ev.dataTransfer.getData("text");
+          ev.target.appendChild(document.getElementById(data));
+        {{'}'}}
+        &lt;/script&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+        
+        &lt;h2&gt;Drag and Drop&lt;/h2&gt;
+        &lt;p&gt;Drag the image back and forth between the two div elements.&lt;/p&gt;
+        
+        &lt;div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"&gt;
+          &lt;img src="img_w3slogo.gif" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31"&gt;
+        &lt;/div&gt;
+        
+        &lt;div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"&gt;&lt;/div&gt;
+        &lt;/body&gt;
+</pre>    
 <p>
 Then, specify what should happen when the element is dragged.
 </p>
@@ -52,5 +80,4 @@ function drop(ev) {{'{'}}
     ev.target.appendChild(document.getElementById(data));
 {{'}'}}
 </pre>
-
 </div>

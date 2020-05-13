@@ -14,7 +14,7 @@
 &lt;p id="location"&gt; &lt;/p&gt;
 &lt;script&gt;
    var x = document.querySelector('#location');
-   getGeolocation(){{'{'}}
+   function getGeolocation(){{'{'}}
        if(navigator.geolocation){{'{'}}
            navigator.geolocation.getCurrentPosition(showPosition);
         {{'}'}} else {{'{'}}
@@ -22,7 +22,7 @@
         {{'}'}}
     {{'}'}}
 
-   showPosition(position){{'{'}}
+   function showPosition(position){{'{'}}
       x.innerHTML = 'Latitude : '+position.coords.latitude+ 'Longitude : '+
       position.coords.longitude;
     {{'}'}}

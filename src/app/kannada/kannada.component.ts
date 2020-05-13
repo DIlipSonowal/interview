@@ -216,8 +216,8 @@ export class KannadaComponent implements OnInit {
                    <td>Brother(Aanna)</td>
                 </tr>
                 <tr>
-                   <td>Mother(Aamma)</td>
-                   <td>Father(Aappa)</td>
+                   <td>Mother(Aamma/Thaayi)</td>
+                   <td>Father(Aappa/thandhe)</td>
                 </tr>
                 <tr>
                   <td>Right (Balagade)</td>
@@ -261,8 +261,8 @@ export class KannadaComponent implements OnInit {
                 <td>Take (Togoli)</td>
               </tr>
               <tr>
-                <td>Give (Koro/kori)</td>
-                <td>Take (Togoli)</td>
+                <td>Pull (Aeli)</td>
+                <td>Push (Talu)</td>
               </tr>
               <tr>
                 <td>Sit (Khootko/khootkoli)</td>
@@ -317,7 +317,7 @@ export class KannadaComponent implements OnInit {
       <tr>
         <td>Coconut</td>
         <td>Tenginakaie</td>
-        <td>Banna</td>
+        <td>Banana</td>
         <td>Balehannu</td>
       </tr>
       <tr>
@@ -429,10 +429,28 @@ export class KannadaComponent implements OnInit {
         <td>Howdu</td>
       </tr>
       <tr>
-        <td>---</td>
-        <td>---</td>
-        <td>---</td>
-        <td>---</td>
+        <td>Let him/her go</td>
+        <td>kalsu</td>
+        <td>It</td>
+        <td>Adu</td>
+      </tr>
+      <tr>
+        <td>Came</td>
+        <td>Baandha(male) /Bandhlu(female)</td>
+        <td>Will come</td>
+        <td>Baaruthare</td>
+      </tr>
+      <tr>
+        <td>Walk</td>
+        <td>Nadee/Nadi</td>
+        <td>Eat</td>
+        <td>Thinnu</td>
+      </tr>
+      <tr>
+        <td>Drink</td>
+        <td>Kudee</td>
+        <td>Run</td>
+        <td>Oodu</td>
       </tr>
       </table>
       `
