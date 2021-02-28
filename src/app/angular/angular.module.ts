@@ -29,9 +29,11 @@ import { MergeMapComponent } from './merge-map/merge-map.component';
 import { IntervalComponent } from './interval/interval.component';
 import { SubbhvrsbjComponent } from './rxjs/subbhvrsbj/subbhvrsbj.component';
 import { ThiskeywordComponent } from './thiskeyword/thiskeyword.component';
+import { DecoratoreComponent } from './decoratore/decoratore.component';
 
 @NgModule({
   declarations: [
+     DecoratoreComponent,
      NgtemplateComponent,
      AngularComponent,
      HomeComponent,

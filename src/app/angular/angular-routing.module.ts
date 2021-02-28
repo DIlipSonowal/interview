@@ -22,6 +22,7 @@ import { ConcatMapComponent } from './concat-map/concat-map.component';
 import { MergeMapComponent } from './merge-map/merge-map.component';
 import { IntervalComponent } from './interval/interval.component';
 import { SubbhvrsbjComponent } from './rxjs/subbhvrsbj/subbhvrsbj.component';
+import { DecoratoreComponent } from './decoratore/decoratore.component';
 
 const routes: Routes = [
     { path:'', component: AngularComponent, 
@@ -34,6 +35,7 @@ const routes: Routes = [
             { path:'authgaurd', component: AuthgaurdsComponent },
             { path:'ngtemplate', component: NgtemplateComponent},   
             { path:'view', component: ViewComponent},
+            { path:'decorator', component: DecoratoreComponent},
             { path:'rxjs', component: RxjsComponent,
               children: [
                   { path:'', component: ObservableComponent },

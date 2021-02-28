@@ -202,7 +202,7 @@ a:`{{  birthday | date:'fullDate' | uppercase}} `},
 a:`Dependency injection (DI), is an important application design pattern in which a class asks for dependencies from external sources rather than creating them itself. Angular comes with its own dependency injection framework for resolving dependencies( services or objects that a class needs to perform its function).So you can have your services depend on other services throughout your application.`},
 
 
-    {id:10, q:`Decorator`, link:'whatisangular',
+    {id:10, q:`Decorator`, link:'decorator',
     a:`<p>Decorators are a design pattern that is used to separate modification or decoration of a class
      without modifying the original source code. They are just functions that can be used to add meta-data, 
      properties or functions to the thing they are attached to. It allows us to decorate classes and functions</p>

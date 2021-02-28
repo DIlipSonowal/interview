@@ -6,8 +6,8 @@ import { Directive, ElementRef, Renderer2, HostListener } from '@angular/core';
 export class DirectiveDirective {
 
   constructor(public el:ElementRef, renderer:Renderer2) {
-    el.nativeElement.style.backgroundColor='red';
-    //renderer.setStyle(el.nativeElement, 'backgroundColor', 'green');
+    // el.nativeElement.style.backgroundColor='red';
+    renderer.setStyle(el.nativeElement, 'backgroundColor', 'yellow');
    }
   
    @HostListener('click') onMouseClick(){

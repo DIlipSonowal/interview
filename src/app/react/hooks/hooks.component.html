@@ -1,0 +1,23 @@
+<div style="margin:1%">
+    <a routerLink="/react">
+        <mat-icon aria-hidden="false">keyboard_backspace</mat-icon>
+    </a>
+   <h3 class="text-center">Reack hooks</h3>
+   <h4>What is React Hooks?</h4>
+   <p><b>Ans:</b> Hooks are a new feature addition in React version 16.8 which allow you to use React feature without having to write a class.</p>
+   <p>Example: React state and other feature you can use using react hooks</p>
+   <p>Keep in mind that hooks donot works inside classes</p>
+   <h3>Why Hooks?</h3>
+   <ol>
+    <li>There is no confusion with the 'this' keyword, since we are not using class component in react hooks</li>
+    <li>Hooks helps us to share (reuse) statefull logic without changing component higherkey</li>
+    <li>Code repeation in the following in class component - <br/>
+        &nbsp; - Data fetching: Related code will split into componentDidMount and componentDidUpdate<br/>
+        &nbsp; - Event listeners: in componentDidMount and componentWillUnmount<br/>
+        Completely unrelated code for Data-fetching & Event-listeners will endup in the same code block  <b>componentDidMount</b><br/>
+        Because of statefull logic - it is not possible to break down the code into different componet, so react hooks came into picture - it will 
+        wrape up the related code into same block, - (useEffect)
+    </li>
+   </ol> 
+</div>
+ 

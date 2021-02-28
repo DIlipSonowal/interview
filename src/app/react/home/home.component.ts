@@ -13,7 +13,11 @@ export class HomeComponent implements OnInit {
       q:'components of Redux',
       link:'reduxcomponents'
     },
-
+    {
+      id:3,
+      q:'React Hook',
+      link:'reacthook'
+    },
     {
       id:2,
       q:'Lifecycle hooks',

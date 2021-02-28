@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { ReduxcomponentComponent } from './reduxcomponent/reduxcomponent.component';
 import { RenderComponent } from './render/render.component';
 import { LifecyclehooksComponent } from './lifecyclehooks/lifecyclehooks.component';
+import { HooksComponent } from './hooks/hooks.component';
 
 const routes:Routes = [
     { path:'', component:ReactComponent,
@@ -12,7 +13,8 @@ const routes:Routes = [
             {path:'', component: HomeComponent},
             {path:'reduxcomponents', component:ReduxcomponentComponent},
             {path:'render', component:RenderComponent},
-            {path:'lifecyclehooks', component:LifecyclehooksComponent}
+            {path:'lifecyclehooks', component:LifecyclehooksComponent},
+            {path:'reacthook', component:HooksComponent}
       ]
     }
 ];

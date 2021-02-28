@@ -7,10 +7,11 @@ import { HomeComponent } from './home/home.component';
 import { ReduxcomponentComponent } from './reduxcomponent/reduxcomponent.component';
 import { RenderComponent } from './render/render.component';
 import { LifecyclehooksComponent } from './lifecyclehooks/lifecyclehooks.component';
+import { HooksComponent } from './hooks/hooks.component';
 
 @NgModule({
     declarations:[ReactComponent, HomeComponent, ReduxcomponentComponent, 
-    RenderComponent, LifecyclehooksComponent],
+    RenderComponent, LifecyclehooksComponent, HooksComponent],
     imports:[CommonModule, ReactRoutingModule,SharedModule],
     providers:[],
 })
